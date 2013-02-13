@@ -1,0 +1,8 @@
+.chart_palace_star
+  %h3= link_to 'General Info', '#'
+  .general_info
+    = comment_box(star)
+
+  %h3= link_to "#{star.pinyin} in the #{chart_palace.palace.name} Palace", '#'
+  .specific_info
+    = comment_box(star.star_palace(chart_palace.palace)) if star.star_palace(chart_palace.palace)

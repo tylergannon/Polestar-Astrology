@@ -1,0 +1,74 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %title= title
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %link{rel: 'apple-touch-icon', sizes: '72x72', href: 'apple-touch-ipad.png'}
+    %link{rel: 'apple-touch-icon', sizes: '114×114', href: 'apple-touch-iphone4.png'}
+
+    = csrf_meta_tag
+    = javascript_include_tag 'application', media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag 'application', "data-turbolinks-track" => true
+    = yield(:head)
+  %body
+    .container-fluid
+      .row-fluid
+        .navbar.navbar-fluid-top
+          .navbar-inner
+            .container-fluid
+              %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              %a.brand(href="#") Da Yuan Circle
+              .container.nav-collapse
+                %ul.nav
+                  - if member_signed_in?
+                    %li= link_to 'natal charts', people_path
+                    %li= link_to 'stems + branches', pillars_path
+                    %li= link_to 'stars', stars_path
+                    %li.dropdown
+                      %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                        %i.icon-cog
+                      %ul.dropdown-menu{role: 'menu', aria_labelledby: 'dropdownMenu'}
+                        %li= link_to 'feedback', new_feedback_path
+                        %li= link_to 'updates', blog_path
+                        %li= link_to 'sign out', destroy_member_session_path, :method => :delete
+                        %li= link_to 'change password', change_password_path
+                        = yield(:navigation)
+      #content_wrapper
+        #content
+          - if flash[:notice]
+            %p.notice= flash[:notice]
+          - if flash[:error]
+            %p.error= flash[:error]
+          = yield
+      
+                  
+    -# #da_yuan_circle_image
+    -#   = link_to root_path do
+    -#     = image_tag 'da_yuan_circle.png'
+    -# 
+    -# #navigation
+    -#   %ul.nav_list
+    -#     - if member_signed_in?
+    -#       %li= link_to 'charts', people_path
+    -#       %li= link_to '5 elements', elements_path
+    -#       %li= link_to 'earthly branches', branches_path
+    -#       %li= link_to 'tong shu', "/tong_shu/#{DateTime.now.year}/#{DateTime.now.strftime("%b").downcase}"
+    -#       %li= link_to 'palaces', palaces_path
+    -#       %li= link_to 'search', search_index_path
+    -#       %li= link_to '', ''
+        
+      
+      -# #footer
+      -#   .contact_info
+      -#     2633 Telegraph Ave #305 Oakland, CA 94612
+      -#     %br
+      -#     = link_to 'info@dayuancircle.com', 'mailto:info@dayuancircle.com'
+      -#     %br
+      -#     &copy; #{DateTime.now.year} Da Yuan Circle
+      -#   #stamp_image
+      -#     = image_tag 'bottom_stamp.png'
+      -# 
+      -# 

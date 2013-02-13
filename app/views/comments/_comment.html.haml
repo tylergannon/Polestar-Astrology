@@ -1,0 +1,9 @@
+.comment[comment]
+  .commentary!= RedCloth.new(comment.comments).to_html
+  .edit_comment
+    = link_to edit_polymorphic_url([parent, comment]), data: {remote: true}, title: 'edit comment' do
+      = image_tag 'icons/edit-icon.png', width: '20px', height: '20px'
+  .delete_comment
+    = link_to polymorphic_url([parent, comment]), method: 'delete', title: 'remove comment', data: {confirm: 'really delete this comment?', remote: true} do
+      = image_tag 'icons/delete-icon.png', width: '20px', height: '20px'
+    

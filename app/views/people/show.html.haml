@@ -1,0 +1,9 @@
+= render @chart      
+
+
+- if @person
+  = content_for :navigation do
+    %h4 This Chart:
+    %ul.nav_list
+      %li= link_to 'Printable PDF', person_path(@person, :format => :pdf)
+      %li= link_to '<< Go Back', people_path

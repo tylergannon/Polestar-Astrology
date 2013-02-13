@@ -1,0 +1,5 @@
+%table
+  - @feedbacks.each do |feedback|
+    %tr
+      %td= feedback.member.email
+      %td= link_to feedback.subject, feedback

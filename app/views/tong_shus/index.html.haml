@@ -1,0 +1,27 @@
+.tong_shu
+  %h1 Tong Shu
+  %p Here's a first shot at basic Tong Shu info.  I'll add more indicators as I can.  Click the Stem+Branch of each day to see the Stems and Branches of the hours.
+  %h2 Year of the #{@month.year.name.titleize}
+  .controls
+    = link_to "<< #{@last_month.strftime("%B")}", tong_shu_index_path(@last_month.year, @last_month.strftime("%b").downcase)
+    = link_to "#{@next_month.strftime("%B")} >>", tong_shu_index_path(@next_month.year, @next_month.strftime("%b").downcase)
+  
+  #calendar
+  
+  -# #jieqi
+
+= content_for :head do
+  = javascript_include_tag '/fullcalendar/fullcalendar.min'
+  = stylesheet_link_tag '/fullcalendar/fullcalendar'
+  
+  :javascript
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        editable: false,
+        events: "/tong_shu/#{@month.solar_date.year}/#{@month.solar_date.strftime("%B")}.json",
+        year: #{@month.solar_date.year},
+        month: #{@month.solar_date.month-1},
+        day: 1
+      });
+    });
+	

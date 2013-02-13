@@ -1,0 +1,8 @@
+.chart_palace
+  .major_stars
+    - if chart_palace.major_stars.empty?
+      = render partial: 'stars/star', collection: borrowed_stars(chart_palace), locals: {star_class: 'borrowed_star', chart_palace: chart_palace}
+    - else
+      = render partial: 'stars/star', collection: major_stars(chart_palace), locals: {star_class: 'major_star', chart_palace: chart_palace}
+  .minor_stars
+    = render partial: 'stars/star', collection: minor_stars(chart_palace), locals: {star_class: 'minor_star', chart_palace: chart_palace}

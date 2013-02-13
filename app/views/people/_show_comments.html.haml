@@ -1,0 +1,4 @@
+- unless (comments = Comment.comments_for(current_member, show_comments)).empty?
+  %ul.list_stuff
+    - comments.each do |comment|
+      .comment!= RedCloth.new(comment.comments).to_html

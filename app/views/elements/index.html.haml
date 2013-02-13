@@ -1,0 +1,7 @@
+%h1 The Five Elements:
+
+%ul.list_stuff
+  - Element.all.each do |element|
+    %li
+      = link_to element do
+        = element.name

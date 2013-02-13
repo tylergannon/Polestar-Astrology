@@ -1,49 +1,65 @@
 PolestarAstrology::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :chart_palaces do
+    resources :comments
+  end
 
-  # You can have the root of your site routed with "root"
-  # root to: 'welcome#index'
+  resources :articles
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  resources :charts, controller: 'people', as: 'people' do
+    # resource :chart, :only => :show
+    resources :palaces, controller: 'chart_palaces', as: 'chart_palaces', only: [:show], key: :foobax
+  end
+  
+  get '/tong_shu/week/(:week)' => 'tong_shus#week_of', :as => 'tong_shu_week'
+  get '/tong_shu/:year/:month' => 'tong_shus#index', :as => 'tong_shu_index'
+  
+  resources :feedback, controller: 'feedbacks', as: 'feedbacks'
+  resources :tong_shus
+  
+  resources :stars, :only => [:index, :show] do
+    resources :comments
+  end
+  
+  resources :star_palaces do
+    resources :comments
+  end
+  
+  resources :branches, :only => [:index, :show] do
+    resources :comments
+  end
+  
+  resources :elements, :only => [:index, :show] do
+    resources :comments
+  end
+  
+  resources :stems_and_branches, controller: 'pillars', as: 'pillars', :only => [:index, :show] do
+    resources :comments
+  end
+  
+  resources :lunar_dates, only: [:show], format: :json
+  
+  resources :search, only: [:index, :create]
+  
+  resources :star_relationships do
+    resources :comments
+  end
+  
+  resources :palaces do
+    resources :star_relationships do
+      put :sort, on: :collection
+    end
+    get 'by_star/:star_id', :action => :show, :on => :member
+  end
+  
+  namespace :admin do
+    resources :members
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  devise_for :members
+  resources :passwords, :only => [:edit, :update], controller: 'change_passwords'
+  get '/change_password' => 'change_passwords#edit', :as => :change_password
+  get '/updates' => 'articles#index', :as => :blog
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  root :to => 'people#index'
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

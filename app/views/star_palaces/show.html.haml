@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Star:
+  = @star_palace.star_id
+%p
+  %b Palace:
+  = @star_palace.palace_id
+
+= link_to 'Edit', edit_star_palace_path(@star_palace)
+\|
+= link_to 'Back', star_palaces_path

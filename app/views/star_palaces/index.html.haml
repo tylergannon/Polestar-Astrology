@@ -1,0 +1,21 @@
+%h1 Listing star_palaces
+
+%table
+  %tr
+    %th Star
+    %th Palace
+    %th
+    %th
+    %th
+
+  - @star_palaces.each do |star_palace|
+    %tr
+      %td= star_palace.star_id
+      %td= star_palace.palace_id
+      %td= link_to 'Show', star_palace
+      %td= link_to 'Edit', edit_star_palace_path(star_palace)
+      %td= link_to 'Destroy', star_palace, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Star palace', new_star_palace_path

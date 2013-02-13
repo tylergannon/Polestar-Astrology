@@ -1,0 +1,11 @@
+.comments[parent, :comments]
+  - if @comments.empty?
+    %h4= "You have not entered any commentary for this #{parent_class.name.titleize.downcase}.  Enter commentary in the form below."
+  = render partial: 'comments/comment', collection: @comments
+
+.new_comment
+  %h3 Add a comment:
+  = form_for [parent, comments.build], remote: true, html: {class: 'new_comment_form'} do |f|
+    = f.text_area :comments, :rows => 8, :cols => 100
+    %br/
+    = f.submit "New Comment", disable_with: 'Saving'

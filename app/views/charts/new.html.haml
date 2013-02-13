@@ -1,0 +1,10 @@
+
+= form_tag chart_path(1), :method => :get do
+  %h3 Name
+  = text_field_tag :name
+  %h3 Date of birth
+  = text_field_tag :date
+  %h3 Time of birth
+  = text_field_tag :time
+  = submit_tag :submit
+

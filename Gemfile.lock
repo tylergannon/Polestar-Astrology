@@ -1,10 +1,23 @@
 GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 63ef0b2a8858a322974a2eb223deb640ed010937
+  remote: git://github.com/indirect/haml-rails.git
+  revision: 6f596f95291526f68152ac2b42d3bec621ea769a
   specs:
-    anjlab-bootstrap-rails (2.3.0.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
+
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: a18024b7f3b92adf0ab86e1a7734eb90332fcd70
+  branch: rails4
+  specs:
+    devise (2.2.3)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (~> 4.0.0.beta)
+      warden (~> 1.2.1)
 
 GIT
   remote: git://github.com/rails/activerecord-deprecated_finders.git
@@ -28,7 +41,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: f8c8ad56c8a1cb48c6535fd8e248dcb9049e0aa3
+  revision: f36b80b3e8a1aae9e45af7c82be3917bc6277aa1
   specs:
     actionmailer (4.0.0.beta)
       actionpack (= 4.0.0.beta)
@@ -69,16 +82,6 @@ GIT
       thor (>= 0.17.0, < 2.0)
 
 GIT
-  remote: git://github.com/rails/sass-rails.git
-  revision: f6431cf032e1beaff243b95151fdb13cae60562e
-  specs:
-    sass-rails (4.0.0.beta)
-      railties (>= 4.0.0.beta, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0.rc0)
-      tilt (~> 1.3)
-
-GIT
   remote: git://github.com/rails/sprockets-rails.git
   revision: 22270f83fb63537cef8a638835363360f2fbaab4
   specs:
@@ -86,6 +89,15 @@ GIT
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+
+GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 5558b1da55f0fff6a6bbe9067acba3b0ec81f78c
+  specs:
+    twitter-bootstrap-rails (2.2.3)
+      actionpack (>= 3.1)
+      execjs
+      railties (>= 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -95,6 +107,11 @@ GEM
     afm (0.2.0)
     atomic (1.0.1)
     bcrypt-ruby (3.0.1)
+    better_errors (0.6.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.6.9)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     cancan (1.6.9)
     coderay (1.0.8)
@@ -102,21 +119,23 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    daemons (1.1.9)
+    database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
     default_value_for (2.0.1)
-    devise (1.5.4)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.1)
+    devise-encryptable (0.1.1)
+      devise (>= 2.1.0.rc)
     erubis (2.7.0)
+    eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    friendly_id (4.1.0.beta.1)
-    haml (3.1.8)
-    haml-rails (0.3.5)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (~> 3.1)
-      railties (>= 3.1, < 4.1)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
+    haml (4.0.0)
+      tilt
     hashery (2.1.0)
     hike (1.2.1)
     i18n (0.6.1)
@@ -133,11 +152,14 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.1)
+      rack-contrib
+      rails
     method_source (0.8.1)
     mime-types (1.21)
     minitest (4.6.0)
     multi_json (1.6.0)
-    orm_adapter (0.0.7)
+    orm_adapter (0.4.0)
     pdf-reader (1.3.1)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.0)
@@ -154,6 +176,8 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.0.3)
@@ -161,13 +185,20 @@ GEM
       json (~> 1.4)
     responders (0.6.5)
     ruby-rc4 (0.1.5)
-    sass (3.2.5)
     slop (3.4.3)
+    spork (1.0.0rc3)
+    spork-minitest (0.0.3)
+      spork
     sprockets (2.8.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.7)
+    thin (1.5.0)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.17.0)
     thread_safe (0.1.0)
       atomic
@@ -176,8 +207,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     ttfunk (1.0.3)
-    turbolinks (1.0.0)
-      coffee-rails
     tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -191,24 +220,30 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   activerecord-deprecated_finders!
-  anjlab-bootstrap-rails!
   arel!
+  better_errors
+  binding_of_caller
   cancan
   coffee-rails!
+  database_cleaner
   default_value_for
-  devise
-  execjs
-  friendly_id (= 4.1.0.beta.1)
-  haml-rails
+  devise!
+  devise-encryptable
+  factory_girl_rails
+  haml-rails!
   jbuilder (~> 1.0.1)
   jquery-rails
   kaminari
+  meta_request
   pg
   prawn
   pry
   rails!
   responders
-  sass-rails!
+  spork (= 1.0.0rc3)
+  spork-minitest
   sprockets-rails!
-  turbolinks
+  sqlite3
+  thin
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)

@@ -1,0 +1,8 @@
+%h1 The Stars of Polestar Astrology
+%ul.list_stuff
+  - Star.all.each do |star|
+    %li
+      = link_to star_path(star.slug) do
+        = star.pinyin
+        = '/'
+        = star.english
