@@ -1,0 +1,2 @@
+$('#comments_<%= parent.class.name.underscore %>_<%= parent.id %>').append('<%= escape_javascript(render partial: 'comment', object: @comment) %>');
+$('.new_comment_form textarea').attr('value', '');

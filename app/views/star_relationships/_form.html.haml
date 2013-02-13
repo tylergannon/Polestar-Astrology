@@ -1,0 +1,17 @@
+= form_for [@palace, @star_relationship] do |f|
+  %h2 Containing All Of These Stars
+  - Star.all.each do |star|
+    = check_box_tag "all[#{star.friendly_id}]", "1", @star_relationship.all?(star)
+    = star.full_name
+    %br/
+  -# Any Minor Helper
+  -# = check_box_tag 'minor_helper'
+  -# Any Minor Ghost
+  -# = check_box_tag 'minor_ghost'
+  %h2 And any of these stars
+  - Star.all.each do |star|
+    = check_box_tag "any[#{star.friendly_id}]", "1", @star_relationship.any?(star)
+    = star.full_name
+    %br/
+  %br/
+  = f.submit

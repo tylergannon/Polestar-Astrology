@@ -1,0 +1,48 @@
+.chart_analysis_accordion
+  %h3= link_to 'Four Pillars Analysis', '#'
+  .analyzing_four_pillars
+    %h3 Analyzing the Four Pillars:
+    %ol
+      %li 
+        %p
+          The Earthly Branch of the Year is #{@chart.year.branch.animal.titleize}.
+          = render :partial => 'show_comments', :object => @chart.year.branch
+            
+      %li
+        %p
+          The Heavenly Stem of the Year is #{@chart.year.stem.name}.  How does this relate to the Earthly Branch?
+          %ul.list_stuff
+            %li
+              The native element of #{@chart.year.branch.animal.titleize} is #{@chart.year.native_element.name.titleize}.
+              #{@chart.year.native_element.related_to(Element.by_name(@chart.year.stem.element))}.
+          = render :partial => 'show_comments', :object => @chart.year.stem._element
+          = render :partial => 'show_comments', :object => @chart.year
+      %li 
+        %p 
+          The Earthly Branch of the Hour is #{@chart.hour.branch.animal.titleize}.
+          = render :partial => 'show_comments', :object => @chart.hour.branch
+      %li
+        %p
+          The Heavenly Stem of the Hour is #{@chart.hour.stem.name}.  How does this relate to the Earthly Branch?
+          %ul.list_stuff
+            %li
+              The native element of #{@chart.hour.branch.animal.titleize} is #{@chart.hour.native_element.name.titleize}.
+              #{@chart.hour.native_element.related_to(Element.by_name(@chart.hour.stem.element))}.
+          = render :partial => 'show_comments', :object => @chart.hour.stem._element
+          = render :partial => 'show_comments', :object => @chart.hour
+      %li 
+        %p Now synthesize a picture of the character based on these four steps, remembering the precedence of the first ones over the later ones.
+    .inner_to_outer
+      %h3 
+        Inner Element (#{@chart.inner_element.titleize}) and Year Stem (#{@chart.year.stem.element.titleize}):
+        #{Element.by_name(@chart.year.stem.element).related_to(Element.by_name(@chart.inner_element))}
+  - @chart.palaces.each do |chart_palace|
+    %h3= link_to chart_palace.palace.name, '#'
+    .chart_palace
+      - chart_palace.stars.each do |star|
+        .chart_palace_star
+          %h4= star.pinyin
+          - star.my_comments(current_member).each do |comment|
+            .comment!= RedCloth.new(comment.comments).to_html
+          - star.star_palace(chart_palace.palace).my_comments(current_member).each do |comment|
+            .comment!= RedCloth.new(comment.comments).to_html

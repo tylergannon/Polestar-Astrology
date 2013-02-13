@@ -1,0 +1,9 @@
+%h1 The 12 Earthly Branches
+
+%ul.list_stuff
+  - Branch.all.each do |animal|
+    %li
+      = link_to animal do
+        = animal.char
+        = animal.pinyin
+        = animal.animal

@@ -1,0 +1,10 @@
+.articles
+  %h1 Recent Updates
+  %h3 Check here to read about new features to the Polestar Astrology Web App.
+
+  - @articles.each do |article|
+    .article
+      .article_title
+        %h1= link_to article.title, article
+        %i Posted: #{article.date_posted.strftime('%Y-%m-%d')}
+      .article_body!= RedCloth.new(article.body).to_html

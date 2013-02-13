@@ -1,0 +1,54 @@
+#chart_analysis_tabs.tab-pane.active
+  %ul#palace_tabs.nav.nav-tabs
+    %li.active= link_to 'Pillars', '#tab_pillars', data: {toggle: 'tab'}
+    - Palace.all.each do |palace|
+      %li= link_to palace.name, "#tab_#{palace.friendly_id}", data: {toggle: 'tab'}
+  .tab-content
+    #tab_pillars.tab-pane.active
+      %h3 Analyzing the Four Pillars:
+      %ol
+        %li 
+          %p
+            The Earthly Branch of the Year is #{@chart.year.branch.animal.titleize}.
+            = render :partial => 'show_comments', :object => @chart.year.branch
+        %li
+          %p
+            The Heavenly Stem of the Year is #{@chart.year.stem.name}.  How does this relate to the Earthly Branch?
+            %ul.list_stuff
+              %li
+                The native element of #{@chart.year.branch.animal.titleize} is #{@chart.year.native_element.name.titleize}.
+                #{@chart.year.native_element.related_to(Element.by_name(@chart.year.stem.element))}.
+            = render :partial => 'show_comments', :object => @chart.year.stem._element
+            = render :partial => 'show_comments', :object => @chart.year
+        %li 
+          %p 
+            The Earthly Branch of the Hour is #{@chart.hour.branch.animal.titleize}.
+            = render :partial => 'show_comments', :object => @chart.hour.branch
+        %li
+          %p
+            The Heavenly Stem of the Hour is #{@chart.hour.stem.name}.  How does this relate to the Earthly Branch?
+            %ul.list_stuff
+              %li
+                The native element of #{@chart.hour.branch.animal.titleize} is #{@chart.hour.native_element.name.titleize}.
+                #{@chart.hour.native_element.related_to(Element.by_name(@chart.hour.stem.element))}.
+            = render :partial => 'show_comments', :object => @chart.hour.stem._element
+            = render :partial => 'show_comments', :object => @chart.hour
+        %li 
+          %p Now synthesize a picture of the character based on these four steps, remembering the precedence of the first ones over the later ones.
+      .inner_to_outer
+        %h3 
+          Inner Element (#{@chart.inner_element.titleize}) and Year Stem (#{@chart.year.stem.element.titleize}):
+          #{Element.by_name(@chart.year.stem.element).related_to(Element.by_name(@chart.inner_element))}
+    - @chart.palaces.each do |chart_palace|
+      .chart_palace.tab-pane{id: "tab_#{chart_palace.palace.friendly_id}"}
+        %h1= chart_palace.palace.name
+        - if chart_palace.major_stars.empty?
+          - borrowed_stars(chart_palace).each do |star|
+            %h3= link_to "(#{star.full_name})", star, target: '_blank'
+        - chart_palace.stars.each do |star|
+          %h3= link_to "#{star.full_name}", star, target: '_blank'
+        %h3= link_to "#{chart_palace.palace.name} Palace in this chart", '#'
+        = comment_box(chart_palace)
+        - chart_palace.my_star_relationships(current_member).each do |star_relationship|
+          %h3= link_to star_relationship_label(star_relationship), '#'
+          = comment_box star_relationship

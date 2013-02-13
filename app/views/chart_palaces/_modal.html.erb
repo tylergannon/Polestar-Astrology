@@ -1,0 +1,23 @@
+<div class="modal hide fade <%= chart_palace.palace.to_param %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>The <%= chart_palace.palace.name %> Palace</h3>
+  </div>
+  <div class="modal-body">
+    <% relationships = chart_palace.my_star_relationships(current_member).each do |star_relationship| %>
+      <h5><%= star_relationship_string(star_relationship) %></h5>
+      <% star_relationship.comments.each do |comment| %>
+        <div class="star_relationship_comments"><%= raw(RedCloth.new(comment.comments).to_html) %></div>
+      <% end %>
+    <% end %>
+    
+    <% if relationships.empty? %>
+      <h4>You have not entered any information that relates to the <%= chart_palace.palace.name %> Palace in this chart</h4>
+    <% end %>
+    <%= link_to 'Add Star Info', new_palace_star_relationship_path(chart_palace.palace), target: '_blank' %>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn close" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+// Place all the styles related to the People controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//.ui-dialog-titlebar {
+//  height: 7px;
+//
+//  .ui-dialog-titlebar-close {
+//    display: block;
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//  }
+//}
+
+#chart_tab {
+  position: absolute;
+  top: -45px;
+  left: 530px;
+//  line-height: 10px;
+}
+
+#chart_analysis_tabs {
+  .comments_list {
+    height: 900px;
+  }
+//  .ui-tabs-nav {
+//    line-height: 0;
+//  }
+}
+
+.star_auspices {
+//  display: none;
+}

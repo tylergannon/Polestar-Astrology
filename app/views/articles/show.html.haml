@@ -1,0 +1,6 @@
+%p#notice= notice
+.article
+  .article_title
+    %h1= @article.title
+    %i Posted: #{@article.date_posted.strftime('%Y-%m-%d')}
+  .article_body!= RedCloth.new(@article.body).to_html

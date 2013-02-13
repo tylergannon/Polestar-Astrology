@@ -1,0 +1,7 @@
+%h1 Palaces
+
+%ul
+  - @palaces.all.each do |palace|
+    %li= link_to palace.name, palace_path(palace.slug)
+    
+    

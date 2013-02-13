@@ -28,4 +28,17 @@ PolestarAstrology::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :domain => 'gmail.com',
+    :user_name => 'tgannon@gmail.com',
+    :password => 'apeman78',
+    :authentication => 'plain',
+    :enable_starttls_auto => true
+  }
+  
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  
 end

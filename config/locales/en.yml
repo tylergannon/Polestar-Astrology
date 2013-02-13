@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+flash:
+    feedbacks:
+      create:
+        notice: Thanks for your feedback!
+        alert: Please fill out all form fields.
