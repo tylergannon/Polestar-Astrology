@@ -1,0 +1,10 @@
+.palace
+  %h3= "#{palace.ordinal}. #{palace.name}"
+  - for star in palace.major_stars.sort_by_rank
+    .major_star= "#{star.pinyin} / #{star.english}"
+    -# .description= "(#{star[2]})"
+  - for star in palace.minor_stars.sort_by_rank
+    .minor_star= "#{star.pinyin} / #{star.english}"
+  
+  %span.palace_location= palace.location.animal
+

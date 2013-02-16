@@ -1,0 +1,18 @@
+<h3>Change password </h3>
+<hr/>
+<%# raise resource.inspect %>
+<%= form_for(current_member, :as => 'member', :url => password_path('member'), :html => { :method => :put }) do |f| %>
+  <%# devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+   <p><%= f.label :current_password %><br />
+   <%= f.password_field :current_password %></p>
+
+  <p><%= f.label :password, "New password" %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation, "Confirm new password" %><br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.submit "Change my password" %></p>
+<% end %>

@@ -1,0 +1,55 @@
+// Place all the styles related to the Palaces controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.palace {
+  transition: all 2s;
+  
+  .star_relationship {
+    h3 .add_comment_link {
+      font-size: 10pt;
+      visibility: hidden;
+    }
+    &:hover .add_comment_link {
+      visibility: visible;
+    }
+    .new_comment {
+      display: none;
+    }
+    &:hover .control_box {
+      visibility: visible;
+    }
+    
+    .control_box {
+      width: 260px;
+      
+      position: absolute;
+      visibility: hidden;
+      img {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .controls {
+        position: absolute;
+        right: 20px;
+        border-radius: 15px;
+        background-color: white;
+        padding: 5px;
+        display: none;
+      }
+      margin-left: 340px;
+      height: 68px;
+      &:hover .controls {
+        display: block;
+      }
+    }
+    
+  }
+}

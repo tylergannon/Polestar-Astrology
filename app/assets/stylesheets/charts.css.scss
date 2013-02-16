@@ -1,0 +1,187 @@
+$palace-width: 190px;
+$palace-height: 175px;
+$border-width: 2px;
+$origin-top: 0px;
+$origin-left: 0px;
+$palace-inside-margin: 5px;
+$major-stars-margin-bottom: 10px;
+$radius: 12px;
+
+  
+@mixin palace-borders {
+  border-style: solid;
+  border-width: $border-width;
+  border-color: black;
+}  
+
+@mixin coordinates($top, $left) {
+  top: $origin-top + $top;
+  left: $origin-left + $left;
+}
+
+.charts {
+  table.chart_list {
+    padding: 60px;
+  }
+  
+}
+  
+.chart {
+  h1 {
+    height: 20px;
+  }
+
+  .center {
+    h3 {
+      height: 14px;
+      padding: 10px;
+      font-size: 18px;
+      margin: 0;
+      margin-bottom: 8px;
+    }
+  }
+
+  width: ($palace-width + $border-width)*4;
+  height: ($palace-height + $border-width)*4;
+  table {
+    padding: 0;
+  }
+  
+  * {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  }
+
+  .title {
+    margin-top: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .major_stars {
+    margin-bottom: $major-stars-margin-bottom;
+  }
+
+  .major_star {
+    margin-bottom: 4px;
+    &.rank1 {
+      font-size: 10pt;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    &.rank2 {
+      font-size: 10pt;
+      font-weight: bold;
+    }
+    &.rank3 {
+      font-size: 9pt;
+      font-weight: bold;
+    }
+    &.rank4 {
+      font-size: 8pt;
+    }
+    }
+  .minor_star {
+    font-size: 8px;
+    text-indent: 10px;
+    margin: 0px; 
+    }
+  .description {
+    font-size: 6pt;
+  }
+  .borrowed_star {
+    text-decoration: none;
+    font-style: italic;
+    font-size: 9pt;
+    color: #7c7c7c;
+  }
+
+  table.elemental_scores td {
+    width: ($palace-width*2/5);
+  }
+
+  .chart_container {
+    position: absolute;
+    @include palace-borders;
+    @include coordinates(0px, 0px);
+  }
+
+  .palace {
+    h3 {
+      text-indent: 4px;
+      margin-top: 2px;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    width: $palace-width;
+    height: $palace-height;
+    vertical-align: top; 
+    position: absolute;
+    @include palace-borders;
+    &.snake   { 
+      border-top-left-radius: $radius;
+      @include coordinates(0px, 0px); 
+    }
+    &.horse   { @include coordinates(0px, ($palace-width+$border-width)); }
+    &.goat    { @include coordinates(0px, (($palace-width+$border-width)*2)); }
+    &.monkey  { 
+      @include coordinates(0px, (($palace-width+$border-width)*3)); 
+  //    border-top-right-radius: $radius;
+    }
+
+    &.rooster { @include coordinates(($palace-height+$border-width), (($palace-width+$border-width)*3)); }
+    &.dog     { @include coordinates((($palace-height+$border-width)*2), (($palace-width+$border-width)*3)); }
+    &.pig     { 
+      @include coordinates((($palace-height+$border-width)*3), (($palace-width+$border-width)*3)); 
+  //    border-bottom-right-radius: $radius;
+    }
+
+    &.rat     { @include coordinates((($palace-height+$border-width)*3), (($palace-width+$border-width)*2)); }
+    &.ox      { @include coordinates((($palace-height+$border-width)*3), (($palace-width+$border-width))); }
+    &.tiger   { 
+      @include coordinates((($palace-height+$border-width)*3), 0px); 
+  //    border-bottom-left-radius: $radius;
+    }
+    &.rabbit  { @include coordinates((($palace-height+$border-width)*2), 0px); }
+    &.dragon  { @include coordinates((($palace-height+$border-width)*1), 0px); }
+
+    div {
+      margin-left: $palace-inside-margin;
+    }
+  }
+
+  .center {
+    width: $palace-width*2+$border-width;
+    height: $palace-height*2+$border-width;
+    position: absolute;
+    @include coordinates(($palace-height+$border-width), ($palace-width+$border-width));
+    text-align: center;
+    @include palace-borders;
+    }
+  span.small_limits {
+    text-align: right;
+    vertical-align: bottom;
+    position: absolute;
+    font-size: 8px;
+    z-index: 1000;
+    bottom: 14px;
+    right: 0;
+    margin-right: 8px;
+  }
+  span.palace_location {
+    text-align: right;
+    vertical-align: bottom;
+    position: absolute;
+    font-weight: bold;
+    bottom: 0;
+    right: 0;
+    margin-right: 8px;
+  }
+  table.elemental_scores {
+    font-size: 12pt;
+  }
+  .something {
+    font-size: 12pt;
+  }
+  
+}

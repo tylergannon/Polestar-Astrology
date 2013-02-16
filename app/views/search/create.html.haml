@@ -1,0 +1,25 @@
+%div{align: :center}
+  %h1 Search Results
+
+.charts
+  %table.chart_list
+
+    - @people.each do |person|
+      %tr
+        %td= person.first_name + " " + person.last_name 
+        %td= " | " + person.dob.strftime('%Y %b %-d, %H:%M') 
+        %td!= " | " + link_to("View Chart", person) + " | "
+        %td= link_to("PDF", person_path(person, :format => :pdf)) + " | "
+        %td= link_to('Change', edit_person_path(person)) + " | "
+        %td= link_to('Delete', person, :confirm => 'Really?', :method => :delete)
+  %br
+  - if @people.empty?
+    %div{align: :center}
+      %div No one matches the search.
+      %div
+      %div So Sorry.
+
+%div{align: :center}
+  = link_to 'Search Again', search_index_path
+
+%br/

@@ -1,0 +1,16 @@
+= form_for @star_palace do |f|
+  -if @star_palace.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@star_palace.errors.count, "error")} prohibited this star_palace from being saved:"
+      %ul
+        - @star_palace.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :star_id
+    = f.number_field :star_id
+  .field
+    = f.label :palace_id
+    = f.number_field :palace_id
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,19 @@
+%h1 Week of #{@days.first.solar_date.strftime("%B %d, %Y")}
+%p Click the links to view the chart for that hour.
+%table
+  %thead
+    %tr
+      %th &nbsp;
+      - @days.each do |day|
+        %th 
+          #{day.solar_date.strftime "%A %d"}
+          %br
+          #{day.day.name.titleize}
+  - Branch.all.each do |branch|
+    %tr
+      %td= branch.time_of_day
+      - @days.each do |day|
+        %td= link_to hour_pillar(day.day.stem, branch).name.titleize, person_path(day.solar_date.strftime("%Y-%B-%d+#{branch.hour}:00"))
+
+
+    

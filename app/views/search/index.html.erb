@@ -1,0 +1,14 @@
+
+<div class="search">
+  <h1>Search For Similar Charts</h1>
+  <%= form_tag(:action => "create") do %>
+    <div id="search_form">
+      <input type="submit" />
+      <%= render partial: 'form_partial', locals: {n: 0} %>
+    </div>
+    <a href="#" id="new_search_term">Add a search term</a>
+    <script type="text/javascript">
+      window.thePartial = '<%= escape_javascript(render partial: 'form_partial', locals: {n: 'XXX'}) %>';
+    </script>
+  <% end -%>
+</div>

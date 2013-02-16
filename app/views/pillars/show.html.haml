@@ -1,0 +1,25 @@
+%h1 #{resource.name}
+
+%h4 My Charts With #{resource.name} Year:
+- if @by_year.empty?
+  .notice 
+    You have not yet entered any charts from #{resource.name} years
+    = link_to 'Add one!', new_person_path
+- else
+  %ul.list_stuff
+    - @by_year.each do |person|
+      %li= link_to person.full_name, person
+    
+
+%h4 My Charts With #{resource.name} Hour:
+- if @by_hour.empty?
+  .notice 
+    You have not yet entered any charts from #{resource.name} hours
+    = link_to 'Add one!', new_person_path
+- else
+  %ul.list_stuff
+    - @by_hour.each do |person|
+      %li= link_to person.full_name, person
+%hr
+%h3 Commentary on this Stem and Branch:
+= comment_box

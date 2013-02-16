@@ -1,0 +1,15 @@
+.stems_and_branches
+  %h1 Stems and Branches
+
+  %h2 By Animal:
+
+  - Branch.all.each do |branch|
+    .branch
+      %h3= branch.animal.titleize
+      %ul.list_stuff
+        - Pillar.all.select{|t| t.branch.animal == branch.animal}.each do |pillar|
+          %li= link_to pillar.name, pillar_path(pillar.slug)
+
+  -# %ul.list_stuff
+  -#   - Pillar.all.each do |pillar|
+  -#     %li= link_to pillar.name, pillar

@@ -1,0 +1,17 @@
+!!! XML
+!!! Strict
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title #{@person.full_name}
+    = stylesheet_link_tag "scaffolds", :media => "all"
+    = stylesheet_link_tag "charts", :media => "all"
+    -# = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #content
+      #right
+        - if flash[:notice]
+          %p.notice= flash[:notice]
+        - if flash[:error]
+          %p.error= flash[:error]
+        = yield

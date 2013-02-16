@@ -1,0 +1,5 @@
+<div class="search_form_partial" id="search_term_<%= n %>">
+  Palace: <%= select_tag "palace_#{n}", options_for_select(Palace.all.collect{ |u| [u.name, u.id] })  %>
+  Has star: <%= select_tag "star_#{n}", options_for_select(Star.all.collect{ |u| [u.full_name, u.to_param] })  %>
+  <a href="#" data-delete="search_term_<%= n %>">(Remove)</a>
+</div>

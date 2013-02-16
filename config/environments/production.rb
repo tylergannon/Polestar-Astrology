@@ -81,4 +81,20 @@ PolestarAstrology::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  ENV['SENDGRID_USERNAME'] = 'cloudfunded_production'
+  ENV['SENDGRID_PASSWORD'] = 'rockst1zzle'
+
+  config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'polestar-astrology.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
+  
+  default_url_options[:host] = "www.polestar-astrology.com"
+  
 end
