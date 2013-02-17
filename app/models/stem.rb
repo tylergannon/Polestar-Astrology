@@ -2,7 +2,7 @@
 
 class Stem < ActiveRecord::Base
   include Extensions::BsFriendlyId
-  friendly_id :name
+  friendly_id :name, cache: true
 
   validates :yin_yang, :presence => true
   validates :element, :presence => true

@@ -8,7 +8,7 @@ class Element < ActiveRecord::Base
   
   def related_to(element)
     relationship = (element.ordinal - self.ordinal) % 5
-    puts "relationship: #{relationship}"
+    logger.info "relationship: #{relationship}"
     case relationship
     when 1
       "#{name.titleize} is the mother of #{element.name.titleize}"

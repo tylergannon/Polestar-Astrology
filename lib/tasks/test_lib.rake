@@ -28,7 +28,7 @@ Rake::Task["test:run"].overwrite do
   end.compact
 
   if errors.any?
-    puts errors.map { |e| "Errors running #{e[:task]}! #{e[:exception].inspect}" }.join("\n")
+    logger.info errors.map { |e| "Errors running #{e[:task]}! #{e[:exception].inspect}" }.join("\n")
     abort
   end
 end

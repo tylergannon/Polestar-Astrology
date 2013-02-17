@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Branch < ActiveRecord::Base
   include Extensions::BsFriendlyId
-  friendly_id :animal
+  friendly_id :animal, cache: true
   belongs_to :native_stem, :class_name => 'Stem'
   has_many :pillars
   
@@ -80,7 +80,7 @@ class Branch < ActiveRecord::Base
       branch=create! char: data[0], pinyin: data[1], normalized: data[2], animal: data[3], hour: data[4], 
         month: data[5], native_stem: Stem.find(data[6]), ordinal: data[7].to_i
     end
-    
   end
+  
 def self.rat;@rat ||= find('rat');end;def self.zi;rat;end;def self._1;zi;end;def self.ox;@ox ||= find('ox');end;def self.chou;ox;end;def self._2;chou;end;def self.tiger;@tiger ||= find('tiger');end;def self.yin;tiger;end;def self._3;yin;end;def self.rabbit;@rabbit ||= find('rabbit');end;def self.mao;rabbit;end;def self._4;mao;end;def self.dragon;@dragon ||= find('dragon');end;def self.chen;dragon;end;def self._5;chen;end;def self.snake;@snake ||= find('snake');end;def self.si;snake;end;def self._6;si;end;def self.horse;@horse ||= find('horse');end;def self.wu;horse;end;def self._7;wu;end;def self.goat;@goat ||= find('goat');end;def self.wei;goat;end;def self._8;wei;end;def self.monkey;@monkey ||= find('monkey');end;def self.shen;monkey;end;def self._9;shen;end;def self.rooster;@rooster ||= find('rooster');end;def self.you;rooster;end;def self._10;you;end;def self.dog;@dog ||= find('dog');end;def self.xu;dog;end;def self._11;xu;end;def self.pig;@pig ||= find('pig');end;def self.hai;pig;end;def self._12;hai;end;def self._0;_12;end;
 end

@@ -9,7 +9,7 @@ class ChartPalaceList < Array
     end
     arr = ChartPalaceList.new(arr)
     
-    Star.all_stars.each do |star|
+    Star.all.each do |star|
       arr.by_location(chart.send(star.symbol_name)).stars << star
     end
     arr

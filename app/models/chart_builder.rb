@@ -71,11 +71,9 @@ class ChartBuilder
     }.call
   end
   
-  SCORES = %w(
-  metal fire wood earth metal fire water earth metal wood 
-  water earth fire wood water metal fire wood earth metal
-  fire water earth metal wood water earth fire wood water
-  )
+  SCORES = %w(metal fire wood earth metal fire water earth metal wood 
+              water earth fire wood water metal fire wood earth metal
+              fire water earth metal wood water earth fire wood water )
   
   def zi_wei
     element_index = %w(wood fire earth metal water).index(inner_element)

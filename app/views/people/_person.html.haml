@@ -1,0 +1,11 @@
+%h4= person.full_name
+
+
+
+
+%td= person.first_name + " " + person.last_name 
+%td= " | " + person.dob.strftime('%Y %b %-d, %H:%M') 
+%td!= " | " + link_to("View Chart", person_path(person.slug)) + " | "
+%td= link_to("PDF", person_path(person.slug, :format => :pdf)) + " | "
+%td= link_to('Change', edit_person_path(person.slug)) + " | "
+%td= link_to('Delete', person, :method => :delete, data: {:confirm => 'Really?'})

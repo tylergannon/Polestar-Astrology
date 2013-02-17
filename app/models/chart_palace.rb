@@ -23,15 +23,15 @@ class ChartPalace < ActiveRecord::Base
     clockwise = (person.yin_yang == chart.year.stem.yin_yang)
     great_limit_start = {'wood' => 3, 'fire' => 6, 'metal' => 4, 'water' => 2, 'earth' => 5}[chart.inner_element]
     if clockwise
-      puts "* " * 40
-      puts "Clockwise"
-      puts "* " * 40
+      logger.info "* " * 40
+      logger.info "Clockwise"
+      logger.info "* " * 40
       decade_number = ordinal
     else
-      puts "* " * 40
-      puts "Anti - Clockwise"
-      puts "* " * 40
-      decade_number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12][ordinal]
+      logger.info "* " * 40
+      logger.info "Anti - Clockwise"
+      logger.info "* " * 40
+      decade_number = (0..12).to_a[ordinal]
     end
     start = 10 * (decade_number - 1) + great_limit_start
     "#{start}-#{start+9}"

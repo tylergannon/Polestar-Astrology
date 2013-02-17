@@ -1,6 +1,7 @@
 # encoding: utf-8
 class PeopleController < ApplicationController
-  before_filter :authenticate_member!
+  before_action :authenticate_member!, :load_member
+  load_and_authorize_resource through: :member
   respond_to :html, :json
   # before_filter :replace_date_parts_with_date_time
   
@@ -82,19 +83,13 @@ class PeopleController < ApplicationController
   end
   
   def new
-    # Time.zone = 'America/Los_Angeles'
-    new!
+    respond_with resource
   end
   
-  helper_method :resource
-  
-  def resource
-    @person
-  end
 
   protected
-  def begin_of_association_chain
-    current_member
+  def load_member
+    @member = current_member
   end
   
   def replace_date_parts_with_date_time

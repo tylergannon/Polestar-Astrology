@@ -5,10 +5,6 @@ class BsFriendlyIdTest < ActiveSupport::TestCase
     @article = Article.create(title: "Friendly Id Article")
   end
   
-  test "it should set the column name on the class" do
-    assert_equal :title, Article::ID_COLUMN
-  end
-  
   test "it should load the correct model when #find is given a stringified id." do
     assert_equal Article.find(@article.id.to_s), @article
   end
