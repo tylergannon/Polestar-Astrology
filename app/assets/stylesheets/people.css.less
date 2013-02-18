@@ -4,12 +4,68 @@
 @import "animals.less";
 
 
+@border-width: 1px;
+@cell-width: 180px;
+@cell-height: 190px;
+
+@chart-width: (4 * @cell-width) + (3 * @border-width);
+@chart-height: (4 * @cell-height) + (3 * @border-width);
+
+.min-size(@height, @width) {
+  min-width: @width !important;
+  min-height: @height !important;
+  border: @border-width dotted @gray;
+}
+
 .animal{
   .animal_block(75px);
 }
 
+
+#blahblah {
+  .row {
+    height: 200px;
+    div {
+      background: @grayDarker;
+      height: 100%;
+    }
+  }
+}
+
+#chart_container {
+  .span9 {
+    width: 790px !important;
+  }
+  table.chart {
+    .min-size(@chart-height, @chart-width);
+    tr {
+      min-height: @cell-height;
+    }
+    
+    td {
+      padding: 0px;
+      position: relative;
+      .palace {
+        .min-size(@cell-width, @cell-height);
+        h5 {
+          margin: 5px 0;
+        }
+        padding-left: 5px;
+        
+        .palace_location {
+          position: absolute;
+          right: 5px;
+          bottom: 5px;
+        }
+
+
+      }
+    }
+  }
+}
+
 .chart_palace_container {
-  border: 1px dotted @gray;
+  border: @border-width dotted @gray;
 }
 
 .person {

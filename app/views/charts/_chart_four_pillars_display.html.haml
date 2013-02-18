@@ -1,0 +1,19 @@
+%table
+  %tr
+    - for name, pillar in {'Year' => @chart.year, 'Month' => @chart.month, 'Day' => @chart.day, 'Hour' => @chart.hour}
+      %td
+        %h4= name
+        .something= pillar.chinese
+        .something= pillar.pinyin
+        .something= pillar.name
+- if params[:decade]
+  .title Progression: Ages #{@ages}
+- else
+  .title Elemental Score:
+  %table.elemental_scores
+    %tr
+      %td Wood: #{@chart.wood_score}
+      %td Fire: #{@chart.fire_score}
+      %td Earth: #{@chart.earth_score}
+      %td Metal: #{@chart.metal_score}
+      %td Water: #{@chart.water_score}
