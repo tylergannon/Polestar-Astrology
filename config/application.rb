@@ -19,6 +19,7 @@ module PolestarAstrology
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     
+    config.assets.enabled = true
     config.assets.version = '1.0'
     config.assets.initialize_on_precompile = false
     config.assets.precompile += ['charts/index.css.scss']

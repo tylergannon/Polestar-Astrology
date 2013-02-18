@@ -1,11 +1,10 @@
-%h4= person.full_name
-
-
-
-
-%td= person.first_name + " " + person.last_name 
-%td= " | " + person.dob.strftime('%Y %b %-d, %H:%M') 
-%td!= " | " + link_to("View Chart", person_path(person.slug)) + " | "
-%td= link_to("PDF", person_path(person.slug, :format => :pdf)) + " | "
-%td= link_to('Change', edit_person_path(person.slug)) + " | "
-%td= link_to('Delete', person, :method => :delete, data: {:confirm => 'Really?'})
+%li[person]
+  %span= person.full_name
+  -# %h5= person.dob.strftime('%Y %b %-d, %H:%M') 
+  %span.pull-right
+    = link_to person_path(person.slug, format: :pdf), rel: 'tooltip', title: 'Download chart as PDF File' do
+      %i.icon-download
+    = link_to edit_person_path(person.slug), rel: 'tooltip', title: 'Make changes' do
+      %i.icon-edit
+    = link_to person_path(person), class: 'tooltippy', title: 'Remove', method: :delete, data: {:confirm => 'Really?'} do
+      %i.icon-trash

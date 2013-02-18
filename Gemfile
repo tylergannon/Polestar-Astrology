@@ -5,13 +5,15 @@ gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
 group :assets do
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  # gem 'sass-rails',      github: 'rails/sass-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
+  gem 'less-rails'
+  gem 'sprockets-rails', github: 'rails/sprockets-rails'
+  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
+  gem 'underscore-rails'
 end
 
-# gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
+gem 'bootstrap-kaminari-views'
 gem 'cancan'
 gem 'default_value_for'
 gem 'devise',            github: 'plataformatec/devise',  branch: 'rails4'

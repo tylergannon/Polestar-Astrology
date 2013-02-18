@@ -27,6 +27,9 @@
                     %li= link_to 'natal charts', people_path
                     %li= link_to 'stems + branches', pillars_path
                     %li= link_to 'stars', stars_path
+                    %li
+                      = link_to new_person_path do
+                        %i.icon-plus-sign
                     %li.dropdown
                       %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
                         %i.icon-cog
@@ -36,6 +39,10 @@
                         %li= link_to 'sign out', destroy_member_session_path, :method => :delete
                         %li= link_to 'change password', change_password_path
                         = yield(:navigation)
+                = form_tag people_path, method: :get, class: 'navbar-search' do |f|
+                  = text_field_tag :search, '', id: 'people_search', class: 'search-query', placeholder: 'Look Up Saved Chart', data: {provide: 'typeahead'}
+
+
       #content_wrapper
         #content
           - if flash[:notice]
