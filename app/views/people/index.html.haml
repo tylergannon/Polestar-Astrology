@@ -1,11 +1,10 @@
-%h1 My Charts
 
-= paginate @people, :theme => 'twitter-bootstrap'
+.span6
+  %h3 My Charts
+  = paginate @people, :theme => 'twitter-bootstrap'
+  %ul.unstyled
+    = render @people
 
-%ul.unstyled
-  = render @people
-
-= paginate @people, :theme => 'twitter-bootstrap'
 
 %br
 - if @people.empty?
