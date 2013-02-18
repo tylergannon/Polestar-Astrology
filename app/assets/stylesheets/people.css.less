@@ -1,12 +1,16 @@
 @import "twitter/bootstrap/variables.less";
 @import "twitter/bootstrap/mixins.less";
 
+@import "animals.less";
+
+
+.animal{
+  .animal_block(75px);
+}
+
 .person {
   position: relative;
   padding: 4px;
   margin-bottom: 4px;
-  .border-radius(4px);
-  background-color: #f5f5f5;
-  border: 1px solid #e3e3e3;
-  .box-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+  .my_well();
 }

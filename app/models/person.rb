@@ -17,6 +17,10 @@ class Person < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  def year
+    
+  end
+    
   def chart
     if super.nil?
       update_attributes chart: Chart.find_or_create(dob)

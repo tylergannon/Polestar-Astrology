@@ -4,7 +4,9 @@
   = paginate @people, :theme => 'twitter-bootstrap'
   %ul.unstyled
     = render @people
-
+.span6
+  %h3 Animals
+  = render partial: 'animal', collection: Branch::ANIMALS
 
 %br
 - if @people.empty?

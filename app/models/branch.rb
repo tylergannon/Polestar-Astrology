@@ -5,6 +5,8 @@ class Branch < ActiveRecord::Base
   belongs_to :native_stem, :class_name => 'Stem'
   has_many :pillars
   
+  ANIMALS = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"]
+  
   def hour
     hour = (ordinal-1)*2
     start_time = Time.parse("#{hour}:00")

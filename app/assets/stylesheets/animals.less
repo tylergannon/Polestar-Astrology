@@ -1,0 +1,16 @@
+.my_well {
+  .border-radius(4px);
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  .box-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+.animal_size(@width: 75px) {
+  .size(@width * 9 / 10, @width);
+}
+.animal_block(@width: 75px, @margin: 4px) {
+  .animal_size(@width);
+  .my_well();
+  margin: @margin;
+  display: inline-block;
+}
