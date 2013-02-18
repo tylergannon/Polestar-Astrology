@@ -1,7 +1,7 @@
 # encoding: utf-8
 class PeopleController < ApplicationController
   before_action :authenticate_member!, :load_member
-  load_and_authorize_resource through: :member
+
   respond_to :html, :json
   # before_filter :replace_date_parts_with_date_time
   
@@ -77,17 +77,58 @@ class PeopleController < ApplicationController
     end
   end
   
+  def create
+    @person = current_member.people.build person_params
+    @person.dob = get_time_from_params
+    @person.save
+    
+    respond_with @person
+  end
+  
+  def get_time_from_params
+    year = params[:person][:year]
+    month = params[:person][:month]
+    day = params[:person][:day]
+    time = params[:person][:time]
+    puts "*" * 80
+    puts "#{year}-#{month}-#{day} #{time}"
+    DateTime.parse("#{year}-#{month}-#{day} #{time}")
+  end
+  
   def update
-    resource.chart = nil
-    update!
+    @person = Person.find params[:id]
+    authorize! :manage, @person
+    puts "Setting time: #{get_time_from_params.inspect}"
+    @person.attributes = person_params
+    @person.dob = get_time_from_params
+    @person.save
+    puts "Sett time: #{@person.dob}"
+    
+    respond_with @person
+  end
+  
+  def edit
+    @person = Person.find(params[:id])
+    respond_with @person
   end
   
   def new
+    @person = current_member.people.build
     respond_with resource
   end
   
+  def destroy
+    person = Person.find(params[:id])
+    authorize! :manage, person
+    person.destroy
+    respond_with person
+  end
 
   protected
+  def person_params
+    params[:person].permit(:first_name, :last_name, :yin_yang)
+  end
+  
   def load_member
     @member = current_member
   end

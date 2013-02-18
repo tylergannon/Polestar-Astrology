@@ -8,9 +8,20 @@
   .animal_block(75px);
 }
 
+.chart_palace_container {
+  border: 1px dotted @gray;
+}
+
 .person {
+  &:hover {
+    cursor: pointer;
+    border-color: @gray;
+  }
   position: relative;
   padding: 4px;
   margin-bottom: 4px;
   .my_well();
+  .animal{
+    .animal_block(25px);
+  }
 }

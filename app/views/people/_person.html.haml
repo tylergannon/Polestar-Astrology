@@ -1,7 +1,9 @@
-%li[person]
+%li[person]{data: {url: person_path(person)}}
   %span= person.full_name
-  -# %h5= person.dob.strftime('%Y %b %-d, %H:%M') 
-  
+  %span
+    = render partial: 'animal', object: person.year_branch.animal
+    = render partial: 'animal', object: person.hour_branch.animal
+
   %span.pull-right
     = link_to person_path(person.slug, format: :pdf), rel: 'tooltip', title: 'Download chart as PDF File' do
       %i.icon-download

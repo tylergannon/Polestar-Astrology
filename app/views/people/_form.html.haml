@@ -21,7 +21,7 @@
     = f.select :month, Person::MONTHS, class: 'input-small'
     = f.text_field :day, class: 'input-small', placeholder: 'Day'
     %span.input-append.bootstrap-timepicker
-      = f.text_field :time, class: 'input-small', placeholder: '12:00 PM'
+      = f.time_field :time, class: 'input-small', placeholder: '12:00 PM'
       %span.add-on
         %i.icon-time
     

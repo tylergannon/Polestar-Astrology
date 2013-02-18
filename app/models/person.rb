@@ -6,11 +6,27 @@ class Person < ActiveRecord::Base
   
   default_scope order(:last_name, :first_name)
   
-  attr_accessor :year, :month, :day, :time
+  before_validation do
+    puts self.year.inspect
+    
+    if dob_changed?
+      self.chart = Chart.find_or_create(dob)
+      self.year_branch_id = chart.year.branch_id
+      self.hour_branch_id = chart.hour.branch_id
+    end
+  end
   
-  validates :year, numericality: { :greater_than_or_equal_to => 1900, :less_than_or_equal_to => 2099 }
-  validates :month, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 12 }
-  validates :day, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 31 }
+  def year_branch
+    @year_branch ||= Branch.find(year_branch_id)
+  end
+
+  def hour_branch
+    @hour_branch ||= Branch.find(hour_branch_id)
+  end
+    
+  # validates :year, numericality: { :greater_than_or_equal_to => 1900, :less_than_or_equal_to => 2099 }
+  # validates :month, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 12 }
+  # validates :day, :numericality => { :greater_than_or_equal_to => 1, :less_than_or_equal_to => 31 }
   
   validates :dob, :presence => true
   def full_name
@@ -18,7 +34,19 @@ class Person < ActiveRecord::Base
   end
   
   def year
-    
+    dob.year
+  end
+  
+  def month
+    dob.month
+  end
+  
+  def day
+    dob.day
+  end
+  
+  def time
+    "#{dob.hour}:#{dob.min}"
   end
     
   def chart

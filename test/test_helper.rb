@@ -37,7 +37,7 @@ Spork.prefork do
       @@shared_connection || retrieve_connection
     end
   end
-
+  
   # Forces all threads to share the same connection. This works on
   # Capybara because it starts the web server in a thread.
   ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
@@ -46,4 +46,7 @@ end
 Spork.each_run do
   FactoryGirl.reload
   DatabaseCleaner.clean
+  # Stem.reseed
+  # Branch.reseed
+  # Pillar.reseed
 end
