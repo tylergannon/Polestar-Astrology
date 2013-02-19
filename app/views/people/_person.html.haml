@@ -4,7 +4,7 @@
     = render partial: 'animal', object: person.year_branch.animal
     = render partial: 'animal', object: person.hour_branch.animal
 
-  %span.pull-right
+  %span.details.pull-right
     = link_to person_path(person.slug, format: :pdf), rel: 'tooltip', title: 'Download chart as PDF File' do
       %i.icon-download
     = link_to edit_person_path(person.slug), rel: 'tooltip', title: 'Make changes' do

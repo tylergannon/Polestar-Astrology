@@ -4,10 +4,10 @@
     Saved Charts
   = link_to new_person_path, class: 'new_chart', rel: 'tooltip', title: 'Create a New Chart' do
     = image_tag 'icons/new_document.png'
-  = paginate @people, :theme => 'twitter-bootstrap'
   %ul.unstyled
     = render @people
-.span6
+  = paginate @people, :theme => 'twitter-bootstrap'
+.span5
   %h3 Animals
   = render partial: 'animal', collection: Branch::ANIMALS
 

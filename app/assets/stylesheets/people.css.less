@@ -19,6 +19,10 @@
 
 .charts_list {
   position: relative;
+  &> ul {
+    padding-top: 4px;
+
+  }
   a.new_chart {
     position: absolute;
     top: 25px;
@@ -29,6 +33,7 @@
     }
   }
 }
+
 
 .animal{
   .animal_block(75px);
@@ -52,6 +57,13 @@
     width: 170px;
     display: inline-block
   }
+  span.details {
+    margin-right: 8px;
+    i {
+      font-size: 13pt;
+      margin-top: 8px;
+    }
+  }
   &:hover {
     cursor: pointer;
     border-color: @gray;
@@ -69,7 +81,7 @@
 //  Chart Layout
 .palace_location(@x, @y) {
   position: absolute;
-  left: @x * (@cell-width  + @border-width + @cell-padding-left) + @cell-padding-left;
+  left: @x * (@cell-width @border-width + @cell-padding-left) + @cell-padding-left;
   top:  @y * (@cell-height + @border-width) + @cell-padding-left;
 }
 
