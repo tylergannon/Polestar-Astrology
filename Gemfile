@@ -6,12 +6,14 @@ gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_fi
 
 group :assets do
   gem 'coffee-rails',    github: 'rails/coffee-rails'
-  gem 'less-rails'
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
-  gem 'underscore-rails'
 end
+
+gem 'less-rails'
+gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'therubyracer'
+gem 'underscore-rails'
+
 
 gem 'bootstrap-kaminari-views'
 gem 'cancan'
