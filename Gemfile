@@ -33,8 +33,8 @@ gem 'responders'
 gem "twitter-bootstrap-rails", :github => 'seyhunak/twitter-bootstrap-rails'
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'thin'
 end
 

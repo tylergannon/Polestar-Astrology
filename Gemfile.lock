@@ -107,11 +107,6 @@ GEM
     afm (0.2.0)
     atomic (1.0.1)
     bcrypt-ruby (3.0.1)
-    better_errors (0.6.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.7.1)
-      debug_inspector (>= 0.0.1)
     bootstrap-kaminari-views (0.0.2)
       kaminari (>= 0.13)
       rails (>= 3.1)
@@ -125,7 +120,6 @@ GEM
     commonjs (0.2.6)
     daemons (1.1.9)
     database_cleaner (0.9.1)
-    debug_inspector (0.0.2)
     default_value_for (2.0.1)
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
@@ -236,8 +230,6 @@ DEPENDENCIES
   RedCloth
   activerecord-deprecated_finders!
   arel!
-  better_errors
-  binding_of_caller
   bootstrap-kaminari-views
   cancan
   coffee-rails!
