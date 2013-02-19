@@ -4,7 +4,7 @@ class Branch < ActiveRecord::Base
   friendly_id :animal, cache: true
   belongs_to :native_stem, :class_name => 'Stem'
   has_many :pillars
-  
+  default_scope -> {order(:id)}
   ANIMALS = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"]
   
   def hour

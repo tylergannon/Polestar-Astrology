@@ -14,7 +14,7 @@ class Star < ActiveRecord::Base
   end
   
   def full_name
-    pinyin + ' / ' + english
+    pinyin + ' : ' + english
   end
   
   def symbol_name

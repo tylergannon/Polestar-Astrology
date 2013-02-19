@@ -85,10 +85,10 @@ class ChartPdf < Prawn::Document
       major_star_attributes = {size: 11}
       if palace.major_stars.empty?
         other_palace = palaces.by_location(palace.location.diametric)
-        major_stars = other_palace.major_stars.sort_by_rank.map{|t| "(#{t.pinyin} / #{t.english})"}
+        major_stars = other_palace.major_stars.sort_by_rank.map{|t| "(#{t.full_name})"}
         major_star_attributes[:style] = :italic
       else
-        major_stars = palace.major_stars.sort_by_rank.map{|t| "#{t.pinyin} / #{t.english}"}
+        major_stars = palace.major_stars.sort_by_rank.map{|t| "#{t.full_name}"}
       end
 
       major_stars.each_with_index do |t, index|
@@ -97,7 +97,7 @@ class ChartPdf < Prawn::Document
 
       palace.minor_stars.sort_by_rank.each_with_index do |star, index|
         location = [25, palace_height - (55 + major_stars.size*15) - index * 10]
-        draw_text "#{star.pinyin} / #{star.english}", attribs.merge(size: 7, at: location, style: :italic)
+        draw_text "#{star.full_name}", attribs.merge(size: 7, at: location, style: :italic)
       end
     end
   end

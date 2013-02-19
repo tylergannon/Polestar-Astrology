@@ -2,70 +2,36 @@
 @import "twitter/bootstrap/mixins.less";
 
 @import "animals.less";
-
+@import url('http://fonts.googleapis.com/css?family=Domine:400,700|Antic+Slab|Mr+Bedfort|Gilda+Display|Stalemate|Rufina|Almendra+Display|Libre+Baskerville:400,400italic|Unica+One|Esteban|Mrs+Saint+Delafield|Lusitana|Junge|Rochester|Buda:300|Maven+Pro|Sanchez');
 
 @border-width: 1px;
-@cell-width: 180px;
-@cell-height: 190px;
+@cell-padding-left: 5px;
+@cell-width: 150px;
+@cell-height: 150px;
 
 @chart-width: (4 * @cell-width) + (3 * @border-width);
 @chart-height: (4 * @cell-height) + (3 * @border-width);
 
-.min-size(@height, @width) {
-  min-width: @width !important;
-  min-height: @height !important;
-  border: @border-width dotted @gray;
+.min-size(@width, @height) {
+  width: @width !important;
+  height: @height !important;
 }
 
 .animal{
   .animal_block(75px);
 }
 
-
-#blahblah {
-  .row {
-    height: 200px;
-    div {
-      background: @grayDarker;
-      height: 100%;
-    }
+.chart {
+  position: relative;
+  .min-size(4 * (@cell-width + @cell-padding-left + @border-width), 4 * (@cell-height + @border-width));
+  .palace {
+    .min-size(@cell-width, @cell-height);
+    border: 1px black solid;
   }
 }
 
-#chart_container {
-  .span9 {
-    width: 790px !important;
-  }
-  table.chart {
-    .min-size(@chart-height, @chart-width);
-    tr {
-      min-height: @cell-height;
-    }
-    
-    td {
-      padding: 0px;
-      position: relative;
-      .palace {
-        .min-size(@cell-width, @cell-height);
-        h5 {
-          margin: 5px 0;
-        }
-        padding-left: 5px;
-        
-        .palace_location {
-          position: absolute;
-          right: 5px;
-          bottom: 5px;
-        }
-
-
-      }
-    }
-  }
-}
-
-.chart_palace_container {
-  border: @border-width dotted @gray;
+.chart_details {
+  min-width: 400px !important;
 }
 
 .person {
@@ -81,3 +47,126 @@
     .animal_block(25px);
   }
 }
+
+
+//  Chart Layout
+.palace_location(@x, @y) {
+  position: absolute;
+  left: @x * (@cell-width  + @border-width + @cell-padding-left) + @cell-padding-left;
+  top:  @y * (@cell-height + @border-width) + @cell-padding-left;
+}
+
+.snake {
+  .palace_location(0, 0);
+}
+.horse {
+  .palace_location(1, 0);
+}
+.goat {
+  .palace_location(2, 0);
+}
+.monkey {
+  .palace_location(3, 0);
+}
+.dragon {
+  .palace_location(0, 1);
+}
+.rooster {
+  .palace_location(3, 1);
+}
+.rabbit {
+  .palace_location(0, 2);
+}
+.dog {
+  .palace_location(3, 2);
+}
+.tiger {
+  .palace_location(0, 3);
+}
+.ox {
+  .palace_location(1, 3);
+}
+.rat {
+  .palace_location(2, 3);
+}
+.pig {
+  .palace_location(3, 3);
+}
+
+
+// Chart Typography
+
+.chart .palace {
+  h5 {
+  margin: 5px 0;
+  }
+  padding-left: 5px;
+
+  .palace_location {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  }
+}
+
+.rank1 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 4px;
+  border: 1px dotted @grayLight;
+  .border-radius(8px);
+}
+.rank2 {
+  font-size: 16px;
+  font-weight: bold;
+  color: @grayDark;
+}
+.rank3 {
+  color: @gray;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.rank4 {
+  color: @gray;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.rank5, .rank6, .rank7 {
+  color: @gray;
+  font-size: 12px;
+}
+
+.star_display {
+  margin-bottom: 4px;
+  
+  &.major_star {
+    display: table;
+  }
+  &.borrowed_star {
+    display: table;
+    font-style: oblique;
+    .opacity(20);
+  }
+  &.minor_star {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 8px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+

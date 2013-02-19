@@ -2,6 +2,8 @@ class ChartPalace < ActiveRecord::Base
   belongs_to :palace
   belongs_to :chart
   belongs_to :location, class_name: 'Branch'
+  
+  # default_scope -> { order(palaces: :id)  }
 
   attr_reader :great_limit
   

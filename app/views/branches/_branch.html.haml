@@ -1,9 +1,14 @@
-%td
-  - palace = @chart.palaces[branch]
-  = render partial: 'chart_palaces/modal', locals: {chart_palace: palace}
-  .palace.tooltippy{class: branch.animal, data: {palace: palace.palace.to_param, title: 'Click for details'}}
-    %h5= link_to "#{palace.ordinal}. #{palace.name}", palace_path(palace.palace.slug)
-    = render palace
-    - if @person && !(params[:decade] || params[:year]) |
-      -# %span.small_limits!= palace.small_limits(@chart, @person) + " (" + link_to(palace.great_limit(@chart, @person), person_path(@person, decade: palace.location.animal)) + ")" 
-    %span.palace_location #{palace.location.char} #{palace.location.pinyin} #{palace.location.animal} 
+%td.chart_layout
+  - chart_palace ||= @chart.palaces[branch]
+  = render partial: 'chart_palaces/modal', locals: {chart_palace: chart_palace}
+  .palace.tooltippy{class: branch.animal, data: {palace: chart_palace.palace.to_param, title: 'Click for details'}}
+    %h5= link_to "#{chart_palace.ordinal}. #{chart_palace.name}", palace_path(chart_palace.palace.slug)
+    .chart_palace
+      .major_stars
+        - if chart_palace.major_stars.empty?
+          = render partial: 'stars/star', collection: borrowed_stars(chart_palace), locals: {star_class: 'borrowed_star', chart_palace: chart_palace}
+        - else
+          = render partial: 'stars/star', collection: major_stars(chart_palace), locals: {star_class: 'major_star', chart_palace: chart_palace}
+      .minor_stars
+        = render partial: 'stars/star', collection: minor_stars(chart_palace), locals: {star_class: 'minor_star', chart_palace: chart_palace}
+    %span.palace_location #{chart_palace.location.char} #{chart_palace.location.pinyin} #{chart_palace.location.animal} 

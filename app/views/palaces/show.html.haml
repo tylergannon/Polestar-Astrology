@@ -13,7 +13,7 @@
           .delete= link_to 'Delete this combo', palace_star_relationship_path(@palace, star_relationship), method: :delete, data: {confirm: "Really delete this relationship?", remote: true }
           .add_comment_link= link_to 'Add Comment for this combo', '#'
           
-      %h3 #{star_relationship.all.map{|t| link_to "#{t.star.pinyin} / #{t.star.english}", t.star.slug}.to_english_list.html_safe}
+      %h3 #{star_relationship.all.map{|t| link_to "#{t.star.full_name}", t.star.slug}.to_english_list.html_safe}
       - unless star_relationship.any.empty?
         %h5 With #{to_star_links(star_relationship.any).to_english_list('or').html_safe}
   

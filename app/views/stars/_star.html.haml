@@ -1,2 +1,2 @@
-.star.star_display{class: "rank#{star.rank} #{star_class}", data: {star: star.slug}}
-  = "#{star.pinyin} / #{star.english}"
+%span.star.star_display.tooltippy{title: star.pinyin, class: "rank#{star.rank} #{star_class}", data: {star: star.slug}}
+  = star.english

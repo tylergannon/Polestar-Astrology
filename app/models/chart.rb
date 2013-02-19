@@ -5,7 +5,7 @@ class Chart < ActiveRecord::Base
   belongs_to :hour, class_name: 'Pillar'
   validates :zi_wei_id, presence: true
   
-  @palaces_scope = -> { includes(:location).extending(Associations::ChartPalacesExtension) }
+  @palaces_scope = -> { includes(:location, :palace).order("palaces.id asc").extending(Associations::ChartPalacesExtension) }
   has_many :palaces, @palaces_scope, class_name: 'ChartPalace'
 
   after_find :load_stars

@@ -1,6 +1,6 @@
 module PalacesHelper
   def to_star_links(relationship_star_list)
-    relationship_star_list.map{|t| link_to "#{t.star.pinyin} / #{t.star.english}", t.star}
+    relationship_star_list.map{|t| link_to t.star.full_name, t.star}
   end
   
   def star_select

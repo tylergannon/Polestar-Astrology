@@ -1,21 +1,5 @@
 .row#chart_container
-  .span9.well.well-small
-    %table.chart
-      %tr
-        - [Branch.snake, Branch.horse, Branch.goat, Branch.monkey].each do |branch|
-          = render branch
-      %tr
-        = render Branch.dragon
-        %td{colspan: 2}
-          = render partial: 'charts/chart_name_display'
-        = render Branch.rooster
-      %tr
-        = render Branch.rabbit
-        %td{colspan: 2}
-          = render partial: 'charts/chart_four_pillars_display'
-        = render Branch.dog
-      %tr
-        - [Branch.tiger, Branch.ox, Branch.rat, Branch.pig].each do |branch|
-          = render branch
-  .span3
+  .chart.span9.well.well-small
+    = render @chart.palaces
+  .span3.chart_details.well.well-small
     Laggerbagger
