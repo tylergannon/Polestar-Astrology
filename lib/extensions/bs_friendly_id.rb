@@ -31,11 +31,29 @@ module Extensions
           end
         end
         
+        def generate_friendly_id_for(str, id=nil)
+          if id
+            base_scope = where.not(id: id)
+          else
+            base_scope = all
+          end
+          
+          i = nil
+          if base_scope.where(slug: str.parameterize).exists?
+            i = 2
+            while base_scope.where(slug: "#{str} #{i}".parameterize).exists?
+              i += 1
+            end
+          end
+          str = "#{str} #{i}" unless i.nil?
+          return str.parameterize
+        end
+        
         before_create do |model|
-          model.slug = model.send(column).parameterize
+          model.slug = self.class.generate_friendly_id_for(model.send(column))
         end
         before_update do |model|
-          model.slug = model.send(column).parameterize
+          model.slug = self.class.generate_friendly_id_for(model.send(column), self.id)
         end
       end
       
