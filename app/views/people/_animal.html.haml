@@ -1,2 +1,3 @@
 .animal{class: animal}
-  = image_tag "animals/#{animal}.png"
+  = link_to branch_path(animal) do
+    = image_tag "animals/#{animal}.png"

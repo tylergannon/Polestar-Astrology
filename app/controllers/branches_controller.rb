@@ -9,6 +9,7 @@ class BranchesController < ApplicationController
   # GET /branches/1
   # GET /branches/1.xml
   def show
+    @branch = Branch.find(params[:id])
     @comments = comments
     @new_comment = comments.build
     @branch = Branch.find(params[:id])
@@ -18,7 +19,6 @@ class BranchesController < ApplicationController
   def comments
     Comment.where(member_id: current_member.id, commentable_id: resource.id, commentable_type: 'Star')
   end
-
 
 
   # GET /branches/new
