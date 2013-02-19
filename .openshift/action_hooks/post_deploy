@@ -1,5 +1,6 @@
 pushd ${OPENSHIFT_REPO_DIR} > /dev/null 
-bundle exec rake db:migrate RAILS_ENV="production" 
+echo "db migrate and precompile"
+bundle exec rake db:migrate assets:precompile RAILS_ENV="production" 
 popd > /dev/null
 
 #  import:lunar_times
