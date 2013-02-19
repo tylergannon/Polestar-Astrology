@@ -9,7 +9,7 @@ class Person < ActiveRecord::Base
   before_validation do
     puts self.year.inspect
     
-    if dob_changed?
+    if dob_changed? || year_branch_id.nil? || hour_branch_id.nil?
       self.chart = Chart.find_or_create(dob)
       self.year_branch_id = chart.year.branch_id
       self.hour_branch_id = chart.hour.branch_id
