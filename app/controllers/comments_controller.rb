@@ -17,7 +17,8 @@ class CommentsController < ApplicationController
   end
   
   def create
-    @comment = comments.build(params[:comment])
+    @comment = comments.build
+    @comment.comments = params[:comment]['comments']
     @comment.save
     
     respond_with @comment do |format|
@@ -36,7 +37,8 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment.update_attributes params[:comment]
+    @comment.comments = params[:comment]['comments']
+    @comment.save
     respond_with @comment do |format|
       format.html {redirect_to parent_url}
     end
