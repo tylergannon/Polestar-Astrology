@@ -2,7 +2,7 @@
 @import "twitter/bootstrap/mixins.less";
 
 @import "animals.less";
-@import url('http://fonts.googleapis.com/css?family=Domine:400,700|Antic+Slab|Mr+Bedfort|Gilda+Display|Stalemate|Rufina|Almendra+Display|Libre+Baskerville:400,400italic|Unica+One|Esteban|Mrs+Saint+Delafield|Lusitana|Junge|Rochester|Buda:300|Maven+Pro|Sanchez');
+
 
 @border-width: 1px;
 @cell-padding-left: 5px;
@@ -106,17 +106,29 @@
 
 .chart {
   .title_info {
-    text-align: center;
-    .center-block();
-    table.elemental_scores {
+    .name {
+      font-family: 'Buda', cursive;
     }
+    .pillar_title {
+      font-family: 'Maven Pro', sans-serif;
+    }
+    text-align: center;
+    margin-top: 25px;
   }
-
+  
   .palace {
     padding-left: 5px;
+    font-family: 'Domine', serif;
 
-    h5 {
+    .name {
       margin: 5px 0;
+      font-size: 12pt;
+      a {
+        color: @black;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
 
     .palace_location {
@@ -176,14 +188,3 @@
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-

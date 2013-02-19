@@ -1,8 +1,8 @@
-%td.chart_layout
+.chart_layout
   - chart_palace ||= @chart.palaces[branch]
   = render partial: 'chart_palaces/modal', locals: {chart_palace: chart_palace}
   .palace.tooltippy{class: branch.animal, data: {palace: chart_palace.palace.to_param, title: 'Click for details'}}
-    %h5= link_to "#{chart_palace.ordinal}. #{chart_palace.name}", palace_path(chart_palace.palace.slug)
+    %h5.name= link_to "#{chart_palace.ordinal}. #{chart_palace.name}", palace_path(chart_palace.palace.slug)
     .chart_palace
       .major_stars
         - if chart_palace.major_stars.empty?
