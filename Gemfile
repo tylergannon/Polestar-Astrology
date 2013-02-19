@@ -5,12 +5,12 @@ gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
 group :assets do
+  gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'less-rails'
-gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'therubyracer'
 gem 'underscore-rails'
 
