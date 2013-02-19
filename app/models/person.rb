@@ -34,19 +34,19 @@ class Person < ActiveRecord::Base
   end
   
   def year
-    dob.year
+    dob.year if dob
   end
   
   def month
-    dob.month
+    dob.month if dob
   end
   
   def day
-    dob.day
+    dob.day if dob
   end
   
   def time
-    "#{dob.hour}:#{dob.min}"
+    "#{dob.hour}:#{dob.min}" if dob
   end
     
   def chart

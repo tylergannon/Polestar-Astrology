@@ -1,6 +1,9 @@
 
-.span6
-  %h3 My Charts
+.span6.charts_list
+  %h3
+    Saved Charts
+  = link_to new_person_path, class: 'new_chart' do
+    = image_tag 'icons/new_document.png'
   = paginate @people, :theme => 'twitter-bootstrap'
   %ul.unstyled
     = render @people

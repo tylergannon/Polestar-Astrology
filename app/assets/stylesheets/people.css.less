@@ -17,6 +17,19 @@
   height: @height !important;
 }
 
+.charts_list {
+  position: relative;
+  a.new_chart {
+    position: absolute;
+    top: 25px;
+    right: 4px;
+    
+    img {
+      height: 20px;
+    }
+  }
+}
+
 .animal{
   .animal_block(75px);
 }
@@ -35,6 +48,10 @@
 }
 
 .person {
+  span:first-child {
+    width: 170px;
+    display: inline-block
+  }
   &:hover {
     cursor: pointer;
     border-color: @gray;

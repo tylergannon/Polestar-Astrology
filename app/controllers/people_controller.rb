@@ -92,7 +92,7 @@ class PeopleController < ApplicationController
     time = params[:person][:time]
     puts "*" * 80
     puts "#{year}-#{month}-#{day} #{time}"
-    DateTime.parse("#{year}-#{month}-#{day} #{time}")
+    Time.parse("#{year}-#{month}-#{day} #{time}")
   end
   
   def update
