@@ -8,6 +8,7 @@ group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
   gem 'uglifier', '>= 1.0.3'
+  gem 'underscore-rails'
 end
 
 gem 'less-rails'
