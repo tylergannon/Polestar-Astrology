@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that'll be compiled into application, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -12,17 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//  require twitter/bootstrap/transition
-//  require twitter/bootstrap/alert
-//=  require twitter/bootstrap/modal
-//  require twitter/bootstrap/dropdown
-//  require twitter/bootstrap/scrollspy
-//= require twitter/bootstrap/tab
-//= require twitter/bootstrap/tooltip
-// require twitter/bootstrap/popover
-//  require twitter/bootstrap/button
-//  require twitter/bootstrap/collapse
-//  require twitter/bootstrap/carousel
-//  require twitter/bootstrap/typeahead
-//  require twitter/bootstrap/affix
+
+//= require bootstrap/bootstrap-timepicker.min
+//= require bootstrap/bootstrap-typeahead
+//= require bootstrap
+//= require comments
+//= require palaces
+//= require people
+//= require search
+
+//= require twitter/bootstrap
 //= require_tree .

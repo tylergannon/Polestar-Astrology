@@ -1,0 +1,206 @@
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+@import "animals.less";
+
+
+@border-width: 1px;
+@cell-padding-left: 5px;
+@cell-width: 150px;
+@cell-height: 150px;
+
+@chart-width: (4 * @cell-width) + (3 * @border-width);
+@chart-height: (4 * @cell-height) + (3 * @border-width);
+
+.min-size(@width, @height) {
+  width: @width !important;
+  height: @height !important;
+}
+
+.charts_list {
+  position: relative;
+  a.new_chart {
+    position: absolute;
+    top: 25px;
+    right: 4px;
+    
+    img {
+      height: 20px;
+    }
+  }
+}
+
+.animal{
+  .animal_block(75px);
+}
+
+.chart {
+  position: relative;
+  .min-size(4 * (@cell-width + @cell-padding-left + @border-width), 4 * (@cell-height + @border-width));
+  .palace {
+    .min-size(@cell-width, @cell-height);
+    border: 1px black solid;
+  }
+}
+
+.chart_details {
+  min-width: 400px !important;
+}
+
+.person {
+  span:first-child {
+    width: 170px;
+    display: inline-block
+  }
+  &:hover {
+    cursor: pointer;
+    border-color: @gray;
+  }
+  position: relative;
+  padding: 4px;
+  margin-bottom: 4px;
+  .my_well();
+  .animal{
+    .animal_block(25px);
+  }
+}
+
+
+//  Chart Layout
+.palace_location(@x, @y) {
+  position: absolute;
+  left: @x * (@cell-width  + @border-width + @cell-padding-left) + @cell-padding-left;
+  top:  @y * (@cell-height + @border-width) + @cell-padding-left;
+}
+
+.chart {
+  .title_info {
+    .min-size(2 * (@cell-width + @border-width + @cell-padding-left), 2 * (@cell-height + @border-width + @cell-padding-left) );
+    .palace_location(1, 1);
+  }
+  
+  .snake {
+    .palace_location(0, 0);
+  }
+  .horse {
+    .palace_location(1, 0);
+  }
+  .goat {
+    .palace_location(2, 0);
+  }
+  .monkey {
+    .palace_location(3, 0);
+  }
+  .dragon {
+    .palace_location(0, 1);
+  }
+  .rooster {
+    .palace_location(3, 1);
+  }
+  .rabbit {
+    .palace_location(0, 2);
+  }
+  .dog {
+    .palace_location(3, 2);
+  }
+  .tiger {
+    .palace_location(0, 3);
+  }
+  .ox {
+    .palace_location(1, 3);
+  }
+  .rat {
+    .palace_location(2, 3);
+  }
+  .pig {
+    .palace_location(3, 3);
+  }
+  
+}
+
+
+// Chart Typography
+
+.chart {
+  .title_info {
+    .name {
+      font-family: 'Buda', cursive;
+    }
+    .pillar_title {
+      font-family: 'Maven Pro', sans-serif;
+    }
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .palace {
+    padding-left: 5px;
+    font-family: 'Domine', serif;
+
+    .name {
+      margin: 5px 0;
+      font-size: 12pt;
+      a {
+        color: @black;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .palace_location {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+    }
+  }
+}
+.rank1 {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px;
+  border: 1px dotted @grayLight;
+  .border-radius(8px);
+}
+.rank2 {
+  font-size: 14px;
+  font-weight: bold;
+  color: @grayDark;
+}
+.rank3 {
+  color: @gray;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.rank4 {
+  color: @gray;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.rank5, .rank6, .rank7 {
+  color: @gray;
+  font-size: 10px;
+}
+
+.star_display {
+  margin-bottom: 1px;
+  
+  &.major_star {
+    display: table;
+  }
+  &.borrowed_star {
+    display: table;
+    font-style: oblique;
+    .opacity(20);
+  }
+  &.minor_star {
+    display: inline-block;
+    margin-left: 5px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  
+}

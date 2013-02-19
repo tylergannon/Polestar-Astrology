@@ -6,6 +6,6 @@
 .new_comment
   %h3 Add a comment:
   = form_for [parent, comments.build], remote: true, html: {class: 'new_comment_form'} do |f|
-    = f.text_area :comments, :rows => 8, :cols => 100
+    = f.text_area :comments, :rows => 8, :cols => 100, class: 'input-xxlarge'
     %br/
     = f.submit "New Comment", disable_with: 'Saving'

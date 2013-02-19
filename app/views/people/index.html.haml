@@ -1,29 +1,21 @@
-%div{align: :center}
-  %h1 My Charts
-  %h2= link_to '- Add a Person -', new_person_path
-  = form_tag people_path, method: :get do |f|
-    = text_field_tag :search, '', id: 'people_search', data: {provide: 'typeahead'}
-    = submit_tag 'search', html: {id: 'people_search_button'}
 
-.charts
-  %table.chart_list
+.span6.charts_list
+  %h3
+    Saved Charts
+  = link_to new_person_path, class: 'new_chart' do
+    = image_tag 'icons/new_document.png'
+  = paginate @people, :theme => 'twitter-bootstrap'
+  %ul.unstyled
+    = render @people
+.span6
+  %h3 Animals
+  = render partial: 'animal', collection: Branch::ANIMALS
 
-    - @people.each do |person|
-      %tr
-        %td= person.first_name + " " + person.last_name 
-        %td= " | " + person.dob.strftime('%Y %b %-d, %H:%M') 
-        %td!= " | " + link_to("View Chart", person_path(person.slug)) + " | "
-        %td= link_to("PDF", person_path(person.slug, :format => :pdf)) + " | "
-        %td= link_to('Change', edit_person_path(person.slug)) + " | "
-        %td= link_to('Delete', person, :method => :delete, data: {:confirm => 'Really?'})
-    %tr
-      %td= paginate @people
+%br
+- if @people.empty?
+  %div{align: :center}
+    %div Add people you know and their dates of birth.
+    %div Click "View PDF Chart" to view the chart in your browser 
+    %div (some browsers will just download the file).
+    %div Click "Download PDF" to download the file to your computer.
 
-  %br
-  - if @people.empty?
-    %div{align: :center}
-      %div Add people you know and their dates of birth.
-      %div Click "View PDF Chart" to view the chart in your browser 
-      %div (some browsers will just download the file).
-      %div Click "Download PDF" to download the file to your computer.
-%br/

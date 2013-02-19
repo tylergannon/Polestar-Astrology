@@ -1,0 +1,4 @@
+%h3= @name
+.data= (@person ? @person.dob : @chart.solar_date).strftime '%Y  %B %d, %I %p'
+.data= "#{numeric(@chart.lunar_month)} month#{@chart.leap ? " (leap)" : ""} / #{numeric(@chart.day_of_month)} day".html_safe
+.data= "Inner Element: #{@chart.inner_element.titleize}"        

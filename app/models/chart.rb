@@ -3,10 +3,41 @@ class Chart < ActiveRecord::Base
   belongs_to :month, class_name: 'Pillar'
   belongs_to :day, class_name: 'Pillar'
   belongs_to :hour, class_name: 'Pillar'
-  
   validates :zi_wei_id, presence: true
   
-  # after_create :create_chart_palaces
+  @palaces_scope = -> { includes(:location, :palace).order("palaces.id asc").extending(Associations::ChartPalacesExtension) }
+  has_many :palaces, @palaces_scope, class_name: 'ChartPalace'
+
+  after_find :load_stars
+  
+  def Chart.most_empty_houses
+    greatest_num = 1
+    the_ones_that_did_it = []
+    
+    all.each do |chart|
+      houses = {}; (1..12).each{|t| houses[t]=0}
+      
+      Star.all.each do |star|
+        loc = chart.send "#{star.symbol_name}_id"
+        houses[loc] += 1
+      end
+      empty = 0
+      houses.each do |loc, num|
+        empty += 1 if num == 0
+      end
+      
+      if empty > greatest_num
+        greatest_num = empty
+        the_ones_that_did_it = [chart.id]
+      elsif empty == greatest_num
+        the_ones_that_did_it << chart.id
+      end
+    end
+    
+    logger.info "Greatest num: #{greatest_num}"
+    logger.info "Who did it? #{the_ones_that_did_it}"
+    return nil
+  end
   
   def day_of_month=(day)
     if (1..31).include?(day)
@@ -70,33 +101,8 @@ class Chart < ActiveRecord::Base
     chart
   end
   
-  has_many :palaces, class_name: 'ChartPalace' do
-    def [](indexer)
-      if indexer.kind_of?(Branch)
-        by_location(indexer)
-      elsif indexer.kind_of?(String) || indexer.kind_of?(Symbol)
-        by_location(Branch.by_name(indexer))
-      else
-        by_palace_ordinal(indexer)
-      end
-    end
-
-    def by_location(branch)
-      select{|t| t.location == branch}.first
-    end
-
-    def by_palace_ordinal(i)
-      select{|t| t.palace.ordinal==i}.first
-    end
-    
-    def by_palace(palace)
-      select{|t| t.palace == palace}.first
-    end
-  end
-  
-  after_find :load_stars
   def load_stars
-    Star.all_stars.each do |star|
+    Star.all.each do |star|
       palaces.by_location(self.send(star.symbol_name)).stars << star
     end
   end

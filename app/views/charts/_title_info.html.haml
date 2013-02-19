@@ -1,0 +1,25 @@
+.title_info
+  %h2.name= @name
+  .data= (@person ? @person.dob : @chart.solar_date).strftime '%Y  %B %d, %I %p'
+  .data= "#{numeric(@chart.lunar_month)} month#{@chart.leap ? " (leap)" : ""} / #{numeric(@chart.day_of_month)} day".html_safe
+  .data= "Inner Element: #{@chart.inner_element.titleize}"        
+
+  %table
+    %tr
+      - for name, pillar in {'Year' => @chart.year, 'Month' => @chart.month, 'Day' => @chart.day, 'Hour' => @chart.hour}
+        %td
+          %h4.pillar_title= name
+          .something= pillar.chinese
+          .something= pillar.pinyin
+          .something= pillar.name
+  - if params[:decade]
+    .title Progression: Ages #{@ages}
+  - else
+    -# .title Elemental Score:
+    -# %table.elemental_scores
+    -#   %tr
+    -#     %td Wood: #{@chart.wood_score}
+    -#     %td Fire: #{@chart.fire_score}
+    -#     %td Earth: #{@chart.earth_score}
+    -#     %td Metal: #{@chart.metal_score}
+    -#     %td Water: #{@chart.water_score}

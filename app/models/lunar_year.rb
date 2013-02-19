@@ -16,10 +16,10 @@ class LunarYear < ActiveRecord::Base
       chart = ChartRipper.rip(date)
       while chart.lunar_month != 1 || chart.day_of_month != 1 do
         date += 1.day
-        puts "Checking #{date}"
+        logger.info "Checking #{date}"
         chart = ChartRipper.rip(date)
       end
-      puts "Beginning of the year #{chart.solar_date.year} is on #{chart.solar_date.month}/#{chart.solar_date.day}"
+      logger.info "Beginning of the year #{chart.solar_date.year} is on #{chart.solar_date.month}/#{chart.solar_date.day}"
       LunarYear.create! year_number: (2698+year), yin_yang: chart.year.branch.native_stem.yin_yang, start_date: chart.solar_date
       
     end

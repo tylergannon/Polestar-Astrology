@@ -1,38 +1,4 @@
-.chart
-  #chart
-    - Branch.all.each do |branch|
-      - palace = @chart.palaces[branch]
-      = render partial: 'chart_palaces/modal', locals: {chart_palace: palace}
-      .palace.tooltippy{class: branch.animal, data: {palace: palace.palace.to_param, title: 'Click for details'}}
-        %h3= link_to "#{palace.ordinal}. #{palace.name}", palace_path(palace.palace.slug)
-        = render palace
-        - if @person && !(params[:decade] || params[:year]) |
-          %span.small_limits!= palace.small_limits(@chart, @person) + " (" + link_to(palace.great_limit(@chart, @person), person_path(@person, decade: palace.location.animal)) + ")" 
-        %span.palace_location #{palace.location.char} #{palace.location.pinyin} #{palace.location.animal} 
-    .center
-      %h2= @name
-      .data= (@person ? @person.dob : @chart.solar_date).strftime '%Y  %B %d, %I %p'
-      .data= "#{numeric(@chart.lunar_month)} month#{@chart.leap ? " (leap)" : ""} / #{numeric(@chart.day_of_month)} day".html_safe
-      .data= "Inner Element: #{@chart.inner_element.titleize}"        
-      %table
-        %tr
-          - for name, pillar in {'Year' => @chart.year, 'Month' => @chart.month, 'Day' => @chart.day, 'Hour' => @chart.hour}
-            %td
-              %h3= name
-              .something= pillar.chinese
-              .something= pillar.pinyin
-              .something= pillar.name
-      - if params[:decade]
-        .title Progression: Ages #{@ages}
-      - else
-        .title Elemental Score:
-        %table.elemental_scores
-          %tr
-            %td Wood: #{@chart.wood_score}
-            %td Fire: #{@chart.fire_score}
-            %td Earth: #{@chart.earth_score}
-            %td Metal: #{@chart.metal_score}
-            %td Water: #{@chart.water_score}
+= render @chart      
 
 
 - if @person

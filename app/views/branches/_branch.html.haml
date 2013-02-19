@@ -1,0 +1,14 @@
+.chart_layout
+  - chart_palace ||= @chart.palaces[branch]
+  = render partial: 'chart_palaces/modal', locals: {chart_palace: chart_palace}
+  .palace.tooltippy{class: branch.animal, data: {palace: chart_palace.palace.to_param, title: 'Click for details'}}
+    %h5.name= link_to "#{chart_palace.ordinal}. #{chart_palace.name}", palace_path(chart_palace.palace.slug)
+    .chart_palace
+      .major_stars
+        - if chart_palace.major_stars.empty?
+          = render partial: 'stars/star', collection: borrowed_stars(chart_palace), locals: {star_class: 'borrowed_star', chart_palace: chart_palace}
+        - else
+          = render partial: 'stars/star', collection: major_stars(chart_palace), locals: {star_class: 'major_star', chart_palace: chart_palace}
+      .minor_stars
+        = render partial: 'stars/star', collection: minor_stars(chart_palace), locals: {star_class: 'minor_star', chart_palace: chart_palace}
+    %span.palace_location #{chart_palace.location.char} #{chart_palace.location.pinyin} #{chart_palace.location.animal} 

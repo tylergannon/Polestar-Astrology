@@ -1,6 +1,6 @@
 class Star < ActiveRecord::Base
   include Extensions::BsFriendlyId
-  friendly_id :pinyin
+  friendly_id :pinyin, cache: true
   
   has_many :star_palaces
   has_many :comments, as: :commentable
@@ -14,19 +14,13 @@ class Star < ActiveRecord::Base
   end
   
   def full_name
-    pinyin + ' / ' + english
+    pinyin + ' : ' + english
   end
   
   def symbol_name
     pinyin.underscore.gsub(/[\s\-]/, '_')
   end
-  
-  def self.all_stars
-    @all_stars ||= STARS.to_a.map{|t|
-      Star.send t[1][0].underscore.gsub(/[\s\-]/, '_')
-    }
-  end
-  
+    
   def self.reseed
     Star.destroy_all
     STARS.each do |wade_giles, info|

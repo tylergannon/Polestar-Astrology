@@ -5,18 +5,19 @@ gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
 group :assets do
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',      github: 'rails/sass-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
+  gem 'less-rails'
+  gem 'sprockets-rails', github: 'rails/sprockets-rails'
+  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
+  gem 'underscore-rails'
 end
 
-gem 'anjlab-bootstrap-rails', github: 'anjlab/bootstrap-rails', require: 'bootstrap-rails'
+gem 'bootstrap-kaminari-views'
 gem 'cancan'
 gem 'default_value_for'
 gem 'devise',            github: 'plataformatec/devise',  branch: 'rails4'
 gem 'devise-encryptable'
-gem 'execjs'
 gem 'haml-rails',        github: 'indirect/haml-rails'
 gem 'jbuilder', '~> 1.0.1'
 gem 'jquery-rails'
@@ -25,11 +26,15 @@ gem 'pg'
 gem 'prawn'
 gem 'RedCloth'
 gem 'responders'
-gem 'turbolinks'
+# gem 'turbolinks'
+
+# gem "therubyracer"
+# gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails", :github => 'seyhunak/twitter-bootstrap-rails'
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'thin'
 end
 

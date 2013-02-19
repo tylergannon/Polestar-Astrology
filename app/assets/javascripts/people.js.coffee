@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->  
+  $('.person').click () ->
+    window.location.href = $(this).data('url')
+      
   $('#region_select').change () ->
     changeZoneValues()
   

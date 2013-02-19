@@ -1,0 +1,13 @@
+%li[person]{data: {url: person_path(person)}}
+  %span= person.full_name
+  %span
+    = render partial: 'animal', object: person.year_branch.animal
+    = render partial: 'animal', object: person.hour_branch.animal
+
+  %span.pull-right
+    = link_to person_path(person.slug, format: :pdf), rel: 'tooltip', title: 'Download chart as PDF File' do
+      %i.icon-download
+    = link_to edit_person_path(person.slug), rel: 'tooltip', title: 'Make changes' do
+      %i.icon-edit
+    = link_to person_path(person), class: 'tooltippy', title: 'Remove', method: :delete, data: {:confirm => 'Really?'} do
+      %i.icon-trash
