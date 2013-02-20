@@ -38,7 +38,7 @@ gem "twitter-bootstrap-rails"
 group :development do
   # gem 'better_errors'
   # gem 'binding_of_caller'
-  gem 'thin'
+  # gem 'thin'
 end
 
 group :development, :test do
