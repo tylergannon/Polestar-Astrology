@@ -41,7 +41,7 @@
                         %li= link_to 'change password', change_password_path
                         = yield(:navigation)
                 = form_tag people_path, method: :get, class: 'navbar-search' do |f|
-                  = text_field_tag :search, '', id: 'people_search', class: 'search-query', placeholder: 'Look Up Saved Chart', data: {provide: 'typeahead'}
+                  = text_field_tag :search, '', id: 'people_search', class: 'search-query', autocomplete: 'off', placeholder: 'Look Up Saved Chart', data: {provide: 'typeahead'}
 
 
       #content_wrapper

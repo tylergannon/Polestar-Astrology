@@ -49,16 +49,19 @@ $ ->
   
   $('#people_search').typeahead
     source: (typeahead, query) ->
+      console.log('bhahbssd');
+
       $.ajax
         url: '/charts.json'
-        dataType: 'json'
-        type: 'GET'
-        data:
-          term: query
         success: (data) ->
           typeahead.process _.map data, (item) ->
             id: item.value
             value: item.label
+        dataType: 'json'
+        type: 'GET'
+        data:
+          term: query
+
     onselect: (obj) ->
       window.location.href = obj.id;
   
@@ -67,8 +70,6 @@ $ ->
     
   changeZoneValues()
   
-  $('#person_time').timepicker()
-     
 changeZoneValues = () ->
   $('#zone_select option').remove()
   _.each zones[$('#region_select').val()], (item) ->

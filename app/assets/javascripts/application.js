@@ -13,13 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require bootstrap/bootstrap-timepicker.min
-//= require bootstrap/bootstrap-typeahead
-//= require bootstrap
+//= require underscore
+//= require twitter/bootstrap/bootstrap-affix.js	
+//= require twitter/bootstrap/bootstrap-alert.js	
+//= require twitter/bootstrap/bootstrap-button.js	
+//= require twitter/bootstrap/bootstrap-carousel.js	
+//= require twitter/bootstrap/bootstrap-collapse.js	
+//= require twitter/bootstrap/bootstrap-dropdown.js	
+//= require twitter/bootstrap/bootstrap-modal.js	
+
+//= require twitter/bootstrap/bootstrap-scrollspy.js	
+//= require twitter/bootstrap/bootstrap-tab.js	
+//= require twitter/bootstrap/bootstrap-tooltip.js	
+//= require twitter/bootstrap/bootstrap-transition.js	
+
+//  Using a different version of typeahead.
+//= require bootstrap/bootstrap-typeahead.js
+// require twitter/bootstrap/bootstrap-typeahead.js
+
 //= require comments
 //= require palaces
 //= require people
 //= require search
-
-//= require twitter/bootstrap
-//= require_tree .
+//= require bootstrap
