@@ -13,22 +13,29 @@ class StarRelationshipsController < ApplicationController
   end
   
   def create
+    puts "*" * 80
+    puts params.inspect
+    
     @star_relationship = StarRelationship.create palace: @palace, member: current_member
     if params[:all]
-      params[:all].each do |name, val|
+      params[:all].reject{|t| t.blank?}.uniq.each do |name, val|
         StarRelationshipStar.create star_relationship: @star_relationship, star: Star.find(name), required: true, member_id: current_member.id, palace_id: @palace.id
       end
     end
     
     if params[:any]
-      params[:any].each do |name, val|
+      params[:any].reject{|t| t.blank?}.uniq.each do |name, val|
         StarRelationshipStar.create star_relationship: @star_relationship, star: Star.find(name), required: false, member_id: current_member.id, palace_id: @palace.id
       end
     end
     
     respond_to do |format|
       format.html {
-        redirect_to palace_path(@palace)
+        if params.include? :return_path
+          redirect_to params[:return_path]
+        else
+          redirect_to palace_path(@palace)
+        end
       }
     end
   end

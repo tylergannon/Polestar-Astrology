@@ -28,21 +28,6 @@ class ApplicationController < ActionController::Base
   end
   
   private
-  def self.polymorphic_parent(*parents)
-    options = parents.last.kind_of?(Hash) ? parents.pop : {}
-
-    parents.each do |parent|
-      load_resource parent
-    end
-    
-    @parents_list = parents
-    
-    if options[:authorize_parent]
-      before_action do
-        authorize! :read, parent
-      end
-    end
-  end
 
   def self.parents_list
     @parents_list

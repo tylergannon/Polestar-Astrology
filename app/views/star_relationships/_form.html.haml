@@ -1,17 +1,46 @@
+-# = form_for [@palace, @star_relationship] do |f|
+-#   %h2 Containing All Of These Stars
+-#   - Star.all.each do |star|
+-#     = check_box_tag "all[#{star.slug}]", "1", @star_relationship.all?(star)
+-#     = star.full_name
+-#     %br/
+-#   -# Any Minor Helper
+-#   -# = check_box_tag 'minor_helper'
+-#   -# Any Minor Ghost
+-#   -# = check_box_tag 'minor_ghost'
+-#   %h2 And any of these stars
+-#   - Star.all.each do |star|
+-#     = check_box_tag "any[#{star.slug}]", "1", @star_relationship.any?(star)
+-#     = star.full_name
+-#     %br/
+-#   %br/
+-#   = f.submit
 = form_for [@palace, @star_relationship] do |f|
-  %h2 Containing All Of These Stars
-  - Star.all.each do |star|
-    = check_box_tag "all[#{star.friendly_id}]", "1", @star_relationship.all?(star)
-    = star.full_name
-    %br/
-  -# Any Minor Helper
-  -# = check_box_tag 'minor_helper'
-  -# Any Minor Ghost
-  -# = check_box_tag 'minor_ghost'
-  %h2 And any of these stars
-  - Star.all.each do |star|
-    = check_box_tag "any[#{star.friendly_id}]", "1", @star_relationship.any?(star)
-    = star.full_name
-    %br/
-  %br/
-  = f.submit
+  %h4 Containing <b>all</b> of the following stars:
+  = hidden_field_tag 'return_path', params[:return_path]
+  .well
+    %ul.unstyled.star_relationship.all
+      %li.star_relationship_star.all.well-small.well
+        %span= star_select('all')
+        %span
+          = link_to '#', class: 'add_star_relationship_star' do
+            %i.icon-plus-sign
+        %span
+          = link_to '#', class: 'remove_star_relationship_star' do
+            %i.icon-minus-sign
+  %h4 And <b>any</b> of the following stars:
+  .well
+    %ul.unstyled.star_relationship.any
+      %li.star_relationship_star.all.well-small.well
+        %span= star_select('any')
+        %span
+          = link_to '#', class: 'add_star_relationship_star' do
+            %i.icon-plus-sign
+        %span
+          = link_to '#', class: 'remove_star_relationship_star' do
+            %i.icon-minus-sign
+
+    
+  = f.submit 'Save', class: 'btn btn-primary'
+  
+  

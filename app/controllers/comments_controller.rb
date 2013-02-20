@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   respond_to :html, :js
   
-  polymorphic_parent :element, :branch, :star, :pillar, :star_palace, :chart_palace, :star_relationship, authorize_parent: true
+  COMMENTABLE_CLASSES = [:element, :branch, :star, :pillar, :star_palace, :chart_palace, :star_relationship]
+  
+  before_filter :load_parent, only: [:new, :index]
 
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   helper_method :comments
@@ -53,6 +55,19 @@ class CommentsController < ApplicationController
     
   def load_comment
     @comment = Comment.find(params[:id])
+  end
+  
+  def load_parent
+    COMMENTABLE_CLASSES.each do |class_name|
+      parameter = "#{class_name}_id".to_sym
+      if params.include? parameter
+        id = params[parameter]
+        @parent = class_name.camelize.constantize.find(id)
+        instance_variable_set("@#{class_name}", @parent)
+        break
+      end
+    end
+    raise "Could not find parent. !!  Oopsie daisies."
   end
   
   def comments

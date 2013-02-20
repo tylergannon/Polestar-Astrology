@@ -90,8 +90,6 @@ class PeopleController < ApplicationController
     month = params[:person][:month]
     day = params[:person][:day]
     time = params[:person][:time]
-    puts "*" * 80
-    puts "#{year}-#{month}-#{day} #{time}"
     DateTime.parse("#{year}-#{month}-#{day} #{time}")
   end
   
@@ -102,7 +100,6 @@ class PeopleController < ApplicationController
     @person.attributes = person_params
     @person.dob = get_time_from_params
     @person.save
-    puts "Sett time: #{@person.dob}"
     
     respond_with @person
   end

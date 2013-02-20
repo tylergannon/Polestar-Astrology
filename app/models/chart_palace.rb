@@ -11,7 +11,9 @@ class ChartPalace < ActiveRecord::Base
   
   def my_star_relationships(member, *including)
     return [] if stars.empty?
-    all_relationships = StarRelationshipStar.where(member_id: member.id, star_id: stars.first.id, palace_id: palace.id).map(&:star_relationship)
+    
+    all_relationships = StarRelationshipStar.where(member_id: member.id, palace_id: palace.id).map(&:star_relationship)
+
     all_relationships.select{|relationship|
       relationship.all.all?{|t| self.stars.include?(t.star)} && (
         relationship.any.empty? || relationship.any.any?{|t| self.stars.include?(t.star)}

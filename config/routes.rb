@@ -1,4 +1,8 @@
 PolestarAstrology::Application.routes.draw do
+  resources :star_groups
+  
+  resources :comments
+
   resources :chart_palaces do
     resources :comments
   end

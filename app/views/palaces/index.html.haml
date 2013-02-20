@@ -2,6 +2,6 @@
 
 %ul
   - @palaces.all.each do |palace|
-    %li= link_to palace.name, palace_path(palace.slug)
+    %li= link_to palace.name, palace_path(palace.friendly_id)
     
     

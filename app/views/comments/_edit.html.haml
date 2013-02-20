@@ -1,0 +1,4 @@
+.comment[@comment]
+  = form_for @comment, remote: true, html: {class: 'edit_comment_form'} do |f|
+    = f.text_area :comments, rows: 8, cols: 100, class: 'input-xxlarge'
+    = f.submit 'Save'

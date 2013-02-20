@@ -4,6 +4,7 @@ class Star < ActiveRecord::Base
   
   has_many :star_palaces
   has_many :comments, as: :commentable
+  belongs_to :star_group
   
   def my_comments(member)
     @my_comments ||= comments.where(member_id: member.id)

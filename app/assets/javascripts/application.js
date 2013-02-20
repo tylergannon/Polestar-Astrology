@@ -35,4 +35,7 @@
 //= require palaces
 //= require people
 //= require search
+//= require star_relationships
 //= require bootstrap
+// require cal_convert
+//= require lunar_date.min

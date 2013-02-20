@@ -67,10 +67,7 @@ class LunarDate < ActiveRecord::Base
       Pillar.find_by_stem_and_branch stem, hour_branch
     }.call
   end
-  
-  def self.hour_pillar(day_stem, hour)
-  end
-  
+    
   MONTH_STEM_LOOKUP = {
     0 => [1,	2,	3,	4,	5,	6,	7,	8,	9,	10,	1,	2],
     1 => [3,	4,	5,	6,	7,	8,	9,	10,	1,	2,	3,	4],

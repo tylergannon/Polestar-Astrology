@@ -20,8 +20,7 @@ module PolestarAstrology
     # config.time_zone = 'Central Time (US & Canada)'
     
     require 'sprockets/railtie'
-
-
+    
     
     config.assets.enabled = true
     config.assets.version = '1.0'
@@ -33,10 +32,6 @@ module PolestarAstrology
     end
     
     # config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 10.minutes }
-
-    config.generators do |g|
-      g.fixture_replacement :factory_girl
-    end
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

@@ -11,6 +11,10 @@ module Extensions
           @cache_find = true
           
           class_eval do
+            def friendly_id
+              slug
+            end
+
             def self.all
               key= self.name + '/all'
               

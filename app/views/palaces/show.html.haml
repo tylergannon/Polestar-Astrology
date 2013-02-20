@@ -1,6 +1,6 @@
 .palace
   %h1= @palace.name + " Palace"
-  = star_select
+  = filter_by_star_select
   = link_to 'Add a Star Combination.', new_palace_star_relationship_path(@palace.slug), class: 'tooltippy', title: "Click here to add a new combination of stars into the #{@palace.name} Palace."
   %hr/
 
