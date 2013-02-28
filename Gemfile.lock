@@ -179,6 +179,7 @@ GEM
     ref (1.0.2)
     responders (0.6.5)
     ruby-rc4 (0.1.5)
+    sass (3.2.5)
     slop (3.4.3)
     spork (1.0.0rc3)
     spork-minitest (0.0.3)
@@ -238,6 +239,7 @@ DEPENDENCIES
   pry
   rails!
   responders
+  sass
   spork (= 1.0.0rc3)
   spork-minitest
   sprockets-rails!

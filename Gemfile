@@ -9,6 +9,7 @@ group :assets do
   gem 'coffee-rails',    github: 'rails/coffee-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'underscore-rails'
+  gem 'sass'
 end
 
 gem 'less-rails'
