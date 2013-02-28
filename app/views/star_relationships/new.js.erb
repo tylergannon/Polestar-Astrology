@@ -1,0 +1,4 @@
+$('#new_star_relationship_modal').remove();
+$('body').append('<%= escape_javascript(render(partial: 'new')) %>');
+$('#new_star_relationship_modal').modal('show');
+

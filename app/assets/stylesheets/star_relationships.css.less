@@ -1,0 +1,23 @@
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+.star_relationship_list {
+  li {
+    position: relative;
+    a {
+      display: none;
+    }
+    
+    &:hover a {
+      display: inline;
+    }
+  }
+}
+
+.star_relationship_comment {
+  min-height: 15px;
+  
+  &:hover {
+    border: 1px dotted @gray;
+  }
+}

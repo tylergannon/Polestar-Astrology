@@ -43,7 +43,8 @@ $ ->
   #     $('#timezone_select').hide()      
   
   $('.chart .palace').click () ->
-    $('.modal.' + $(this).data('palace')).modal('toggle')
+    $('#palace_selector a[href=#' + $(this).data('palace') + ']').tab('show')
+    # $('.modal.' + $(this).data('palace')).modal('toggle')
   
   # $('[data-provide=typeahead]').attr('autocomplete', 'off')
   

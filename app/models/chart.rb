@@ -1,14 +1,17 @@
 class Chart < ActiveRecord::Base
-  belongs_to :year, class_name: 'Pillar'
-  belongs_to :month, class_name: 'Pillar'
-  belongs_to :day, class_name: 'Pillar'
-  belongs_to :hour, class_name: 'Pillar'
+  
+  @pillar_scope = -> {includes(:stem, {branch: :native_stem})}
+  
+  belongs_to :year, @pillar_scope, class_name: 'Pillar'
+  belongs_to :month, @pillar_scope, class_name: 'Pillar'
+  belongs_to :day, @pillar_scope, class_name: 'Pillar'
+  belongs_to :hour, @pillar_scope, class_name: 'Pillar'
   validates :zi_wei_id, presence: true
   
   @palaces_scope = -> { includes(:location, :palace).order("palaces.id asc").extending(Associations::ChartPalacesExtension) }
   has_many :palaces, @palaces_scope, class_name: 'ChartPalace'
 
-  after_find :load_stars
+  # after_find :load_stars
   
   def Chart.most_empty_houses
     greatest_num = 1

@@ -1,7 +1,5 @@
 
   var LunarDate;
-  
-  // File.open("app/assets/javascripts/lunar_date.min.js", 'w'){|f| f.write(Uglifier.new.compile(File.read("app/assets/javascripts/lunar_date.js")))}
 
   LunarDate = (function() {
 
@@ -155,3 +153,7 @@
     return LunarDate;
 
   })();
+
+function getLunarDate(y, m, d, h) {
+  return (new LunarDate(y, m, d, h)).toJSON();
+}

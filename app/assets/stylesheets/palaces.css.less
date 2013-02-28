@@ -1,0 +1,23 @@
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+
+.control_box {
+  position: relative;
+  img {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+  }
+  
+  .controls {
+    position: absolute;
+    display: none;
+  }
+  
+  &:hover {
+    .controls {
+      display: block;
+    }
+  }
+}

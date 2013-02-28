@@ -1,5 +1,6 @@
 class StarRelationshipsController < ApplicationController
   respond_to :html, :js
+  before_filter :load_chart_palace
   load_and_authorize_resource :palace
   load_and_authorize_resource :star_relationship, :through => :palace
   
@@ -12,10 +13,7 @@ class StarRelationshipsController < ApplicationController
   def show
   end
   
-  def create
-    puts "*" * 80
-    puts params.inspect
-    
+  def create    
     @star_relationship = StarRelationship.create palace: @palace, member: current_member
     if params[:all]
       params[:all].reject{|t| t.blank?}.uniq.each do |name, val|
@@ -29,13 +27,14 @@ class StarRelationshipsController < ApplicationController
       end
     end
     
-    respond_to do |format|
+    @star_relationship.comments.create(comments: '')
+    
+    @star_relationship.reload
+    parent.reload
+    
+    respond_with(parent, @star_relationship) do |format|
       format.html {
-        if params.include? :return_path
-          redirect_to params[:return_path]
-        else
-          redirect_to palace_path(@palace)
-        end
+        redirect_to parent
       }
     end
   end
@@ -75,6 +74,17 @@ class StarRelationshipsController < ApplicationController
       format.js {
         render action: :destroy
       }
+    end
+  end
+  
+  def parent
+    @chart_palace || @palace
+  end
+  
+  def load_chart_palace
+    if params[:chart_palace_id]
+      @chart_palace = ChartPalace.find(params[:chart_palace_id])
+      @palace = @chart_palace.palace
     end
   end
 end

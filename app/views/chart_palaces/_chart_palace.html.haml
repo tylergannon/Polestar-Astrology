@@ -1,1 +1,9 @@
-= render chart_palace.location, locals: {chart_palace: chart_palace}
+%h1= chart_palace.palace.name
+- relationships = chart_palace.my_star_relationships(current_member).each do |star_relationship|
+  %h5= star_relationship_string(star_relationship)
+  - star_relationship.comments.each do |comment|
+    .comment.clickable.star_relationship_comment(id="comment_#{comment.id}" data-id="#{comment.id}")
+      != RedCloth.new(comment.comments).to_html
+- if relationships.empty?
+  %h4 You have not entered any information that relates to the #{chart_palace.palace.name} Palace in this chart
+= link_to 'Add Star Info', new_chart_palace_star_relationship_path(chart_palace), data: {remote: true} 

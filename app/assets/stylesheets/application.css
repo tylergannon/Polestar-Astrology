@@ -11,5 +11,7 @@
  *= require_self
  *= bootstrap/bootstrap-timepicker.min
  *= require people
+ *= require star_relationships
+ *= require palaces
  *= require bootstrap_and_overrides
 */

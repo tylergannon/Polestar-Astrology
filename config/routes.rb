@@ -4,6 +4,7 @@ PolestarAstrology::Application.routes.draw do
   resources :comments
 
   resources :chart_palaces do
+    resources :star_relationships
     resources :comments
   end
 

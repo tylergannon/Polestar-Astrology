@@ -9,6 +9,11 @@ addComment = (comment) ->
 window.addComment = addComment
 
 $ ->
+  $(document).on 'click', '.comment.clickable', (e) ->
+    e.preventDefault()
+    $.getScript('/comments/' + $(this).data('id') + '/edit')
+    $(this).removeClass('clickable')
+  
   $('.comments_list[data-load-from]').each (index, element) ->
     $.ajax(
       dataType: 'script'

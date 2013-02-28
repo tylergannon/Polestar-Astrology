@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   respond_to :html, :js
   
-  COMMENTABLE_CLASSES = [:element, :branch, :star, :pillar, :star_palace, :chart_palace, :star_relationship]
+  COMMENTABLE_CLASSES = %w(element branch star pillar star_palace chart_palace star_relationship)
   
   before_filter :load_parent, only: [:new, :index]
 
@@ -60,17 +60,19 @@ class CommentsController < ApplicationController
   def load_parent
     COMMENTABLE_CLASSES.each do |class_name|
       parameter = "#{class_name}_id".to_sym
+      puts "#{class_name}_id".to_sym.inspect
+      puts params.inspect
       if params.include? parameter
         id = params[parameter]
         @parent = class_name.camelize.constantize.find(id)
         instance_variable_set("@#{class_name}", @parent)
-        break
+        return
       end
     end
     raise "Could not find parent. !!  Oopsie daisies."
   end
   
   def comments
-    Comment.where(commentable_id: parent.id, commentable_type: parent.class.name, member_id: current_member.id)
+    Comment.where(commentable_id: @parent.id, commentable_type: @parent.class.name, member_id: current_member.id)
   end
 end

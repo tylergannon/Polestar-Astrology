@@ -1,0 +1,15 @@
+<div class="modal hide fade" id="new_star_relationship_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Star Relationships</h3>
+  </div>
+  <div class="modal-body">
+    <p class="lead">
+      Add a new star combo to the <%= @palace.name %> palace.
+    </p>
+    <%= render partial: 'form' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>

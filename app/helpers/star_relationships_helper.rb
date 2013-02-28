@@ -1,9 +1,9 @@
 module StarRelationshipsHelper
-  def star_select(relationship_category)
-    content_tag('select', class: "star_relationship_star #{relationship_category}", name: "#{relationship_category}[]") do
+  def star_select
+    content_tag('select', id: "select_star", class: "input input-medium") do
       val = content_tag('option', value: '') {'Choose One'}
       Star.all.each do |star|
-        val += content_tag('option', value: star.friendly_id) {star.english}
+        val += content_tag('option', value: star.friendly_id, data: {id: star.id}) {star.english}
       end
       val
     end

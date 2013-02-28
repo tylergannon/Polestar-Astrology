@@ -13,7 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 
+//  Underscore JS
+
 //= require underscore
+
+//  Bootstrap Features
+
 //= require twitter/bootstrap/bootstrap-affix.js	
 //= require twitter/bootstrap/bootstrap-alert.js	
 //= require twitter/bootstrap/bootstrap-button.js	
@@ -26,10 +31,20 @@
 //= require twitter/bootstrap/bootstrap-tab.js	
 //= require twitter/bootstrap/bootstrap-tooltip.js	
 //= require twitter/bootstrap/bootstrap-transition.js	
+//= require twitter/bootstrap/bootstrap-popover.js	
 
 //  Using a different version of typeahead.
+
 //= require bootstrap/bootstrap-typeahead.js
 // require twitter/bootstrap/bootstrap-typeahead.js
+
+//  Mustache JS features.
+
+//= require handlebars.runtime
+//= require_tree ./templates
+
+
+//  Our Application Logic
 
 //= require comments
 //= require palaces
@@ -38,4 +53,4 @@
 //= require star_relationships
 //= require bootstrap
 // require cal_convert
-//= require lunar_date.min
+// require lunar_date.min

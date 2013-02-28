@@ -34,14 +34,11 @@ class ApplicationController < ActionController::Base
   end
   
   def parent_class
-    parent.class
+    @parent.class
   end
   
   def parent
-    self.class.parents_list.each do |p|
-      val = instance_variable_get("@#{p}")
-      return val unless val.nil?
-    end
+    @parent
   end
 
   helper_method :parent, :parent_class, :resource

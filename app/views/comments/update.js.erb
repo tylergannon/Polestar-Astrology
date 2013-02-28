@@ -1,1 +1,2 @@
 $('#comment_<%= resource.id %>').html('<%= escape_javascript(render partial: 'comment', object: @comment) %>');
+$('#comment_<%= resource.id %>').addClass('clickable');

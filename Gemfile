@@ -10,6 +10,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'underscore-rails'
   gem 'sass'
+  gem 'handlebars_assets'
 end
 
 gem 'less-rails'

@@ -7,5 +7,7 @@ class ChartPalacesController < ApplicationController
     @chart_palace = @chart.palaces.by_palace(@palace)
     
     @star_relationships = @chart_palace.my_star_relationships(current_member)
+    
+    respond_with(@chart_palace)
   end
 end

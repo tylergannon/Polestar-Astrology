@@ -2,6 +2,17 @@ class ChartPalace < ActiveRecord::Base
   belongs_to :palace
   belongs_to :chart
   belongs_to :location, class_name: 'Branch'
+  attr_accessor :stars
+  
+  after_initialize do |chart_palace|
+    ming_location = chart.ming_id
+    palace_id = chart_palace.palace_id
+
+    chart_palace.stars = Star.all.select{|star|
+      star_location = chart_palace.chart.send(star.symbol_name + "_id")
+      (ming_location - star_location) % 12 == palace_id - 1
+    }
+  end
   
   # default_scope -> { order(palaces: :id)  }
 
@@ -59,13 +70,13 @@ class ChartPalace < ActiveRecord::Base
     
   end
   
-  def stars
-    @stars ||= []
-  end
-  
-  def stars=(arr)
-    @stars = SortedStarList.new(arr)
-  end
+  # def stars
+  #   @stars ||= []
+  # end
+  # 
+  # def stars=(arr)
+  #   @stars = SortedStarList.new(arr)
+  # end
   
   def major_stars
     SortedStarList.new stars.select{|t| t.rank <= 4}

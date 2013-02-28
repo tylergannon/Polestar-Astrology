@@ -2,19 +2,23 @@
 .row#chart_container
   .chart.span9.well.well-small
     = render 'charts/title_info'
-    = render @chart.palaces
+    = render partial: 'chart_palaces/chart_box', collection: @chart.palaces
   .span3.chart_details.well.well-small
-    - @chart.palaces.each do |chart_palace|
-      .palace_details{data: {palace: chart_palace.palace.name}}
-        %h1= chart_palace.palace.name
-        - relationships = chart_palace.my_star_relationships(current_member).each do |star_relationship|
-          %h5= star_relationship_string(star_relationship)
-          - star_relationship.comments.each do |comment|
-            .comment.star_relationship_comment(id="comment_#{comment.id}" data-id="#{comment.id}")
-              != RedCloth.new(comment.comments).to_html
-        - if relationships.empty?
-          %h4 You have not entered any information that relates to the #{chart_palace.palace.name} Palace in this chart
-        = link_to 'Add Star Info', new_palace_star_relationship_path(chart_palace.palace) + "?return_path=#{request.path}" 
+    .shananana
+      %ul.nav.nav-tabs.hide
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Choose a Palace
+            %b.caret
+          %ul.dropdown-menu#palace_selector
+            - @chart.palaces.each do |chart_palace|
+              %li
+                %a{"data-toggle" => "tab", :href => "#chart_palace_#{chart_palace.id}"}= chart_palace.palace.name
+      .tab-content
+        - @chart.palaces.each do |chart_palace|
+          .palace_details.tab-pane.fade[chart_palace]
+            = render chart_palace
+    
 
 - if @person
   = content_for :navigation do
@@ -22,3 +26,4 @@
     %ul.nav_list
       %li= link_to 'Printable PDF', person_path(@person, :format => :pdf)
       %li= link_to '<< Go Back', people_path
+
