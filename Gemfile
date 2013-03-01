@@ -46,7 +46,7 @@ end
 group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'meta_request'
+  # gem 'meta_request'
   gem 'pry'
   gem 'spork', '1.0.0rc3'
   gem 'spork-minitest'
