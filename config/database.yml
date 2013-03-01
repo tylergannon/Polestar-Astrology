@@ -1,12 +1,13 @@
 development:
   adapter: postgresql
-  encoding: unicode
-  database: natal_charts_development
+  encoding: utf8
+  reconnect: false
   pool: 5
-  username: polestar
-  password: sourdough
-  host: localhost
-  port: 5432
+  host: <%= ENV["OPENSHIFT_POSTGRESQL_DB_HOST"] %>
+  database: <%=ENV['OPENSHIFT_APP_NAME']%>
+  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
+  socket:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_SOCKET']%>
 
 production:
   adapter: postgresql
