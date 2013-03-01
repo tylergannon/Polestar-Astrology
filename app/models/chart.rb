@@ -9,10 +9,9 @@ class Chart < ActiveRecord::Base
   validates :zi_wei_id, presence: true
   
   @palaces_scope = -> { includes(:location, :palace).order("palaces.id asc").extending(Associations::ChartPalacesExtension) }
-  has_many :palaces, @palaces_scope, class_name: 'ChartPalace'
-
-  # after_find :load_stars
   
+  has_many :palaces, @palaces_scope, class_name: 'ChartPalace', dependent: :destroy
+
   def Chart.most_empty_houses
     greatest_num = 1
     the_ones_that_did_it = []
@@ -82,7 +81,6 @@ class Chart < ActiveRecord::Base
       chart = build(d)
       chart.save!
       chart.create_chart_palaces
-      chart.load_stars
       chart
     end
   end
@@ -103,13 +101,7 @@ class Chart < ActiveRecord::Base
     chart.attributes = ChartBuilder.new(chart).attributes
     chart
   end
-  
-  def load_stars
-    Star.all.each do |star|
-      palaces.by_location(self.send(star.symbol_name)).stars << star
-    end
-  end
-    
+      
   def pillar(name)
     send name
   end
