@@ -46,7 +46,7 @@ class Person < ActiveRecord::Base
   end
   
   def time
-    "#{dob.hour}:#{dob.min}" if dob
+    dob
   end
     
   def chart

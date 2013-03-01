@@ -78,6 +78,26 @@
 }
 
 
+//  Star Relationships Layout
+
+.star_relationship_container {
+  position: relative;
+  .controls {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    font: @grayLight;
+    font-size: 14pt;
+    display: none;
+  }
+  &:hover {
+    .controls {
+      display: block;
+    }
+  }
+}
+
+
 //  Chart Layout
 .palace_location(@x, @y) {
   position: absolute;

@@ -17,28 +17,36 @@
         .navbar.navbar-top
           .navbar-inner
             .container
-              %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-                %span.icon-bar
-                %span.icon-bar
-                %span.icon-bar
+              -# %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+              -#   %span.icon-bar
+              -#   %span.icon-bar
+              -#   %span.icon-bar
               %a.brand(href=root_path) Da Yuan Circle
-              .container.nav-collapse
+              .container
                 %ul.nav
                   - if member_signed_in?
-                    %li= link_to 'natal charts', people_path
-                    %li= link_to 'stems + branches', pillars_path
-                    %li= link_to 'stars', stars_path
+                    %li.dropdown
+                      %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
+                        %i.icon-info-sign
+                        astro
+                      %ul.dropdown-menu{role: 'menu', aria_labelledby: 'dropdownMenu'}
+                        = icon_nav_link 'saved charts', 'icon-user', people_path
+                        = icon_nav_link 'earthly branches', 'icon-leaf', branches_path
+                        = icon_nav_link 'chart palaces', 'icon-th-large', palaces_path
+                        = icon_nav_link 'stem and branch', 'icon-list', pillars_path
+                        = icon_nav_link 'stars', 'icon-star', stars_path
                     %li
-                      = link_to new_person_path do
+                      = link_to new_person_path, rel: 'tooltip', title: 'New Chart' do
                         %i.icon-plus-sign
+                        new chart
                     %li.dropdown
                       %a.dropdown-toggle{href: '#', data: {toggle: 'dropdown'}}
                         %i.icon-cog
                       %ul.dropdown-menu{role: 'menu', aria_labelledby: 'dropdownMenu'}
-                        %li= link_to 'feedback', new_feedback_path
-                        %li= link_to 'updates', blog_path
-                        %li= link_to 'sign out', destroy_member_session_path, :method => :delete
-                        %li= link_to 'change password', change_password_path
+                        = icon_nav_link 'feedback', 'icon-comment', new_feedback_path
+                        = icon_nav_link 'app updates', 'icon-file', blog_path
+                        = icon_nav_link 'sign out', 'icon-off', destroy_member_session_path, :method => :delete
+                        = icon_nav_link 'change password', 'icon-edit', change_password_path
                         = yield(:navigation)
                 - if member_signed_in?
                   = form_tag people_path, method: :get, class: 'navbar-search' do |f|

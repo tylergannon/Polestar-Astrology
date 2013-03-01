@@ -48,6 +48,16 @@ $ ->
   
   # $('[data-provide=typeahead]').attr('autocomplete', 'off')
   
+  
+  $(document).on 'click', '.show_all_relationship_data', (e) ->
+    e.preventDefault()
+    $(this).parent().parent().find('.collapse').collapse('show')
+
+  $(document).on 'click', '.collapse_all_relationship_data', (e) ->
+    e.preventDefault()
+    $(this).parent().parent().find('.collapse').collapse('hide')
+  
+  
   $('#people_search').typeahead
     source: (typeahead, query) ->
       console.log('bhahbssd');
