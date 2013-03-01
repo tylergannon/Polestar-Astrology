@@ -1,11 +1,11 @@
 class LunarDate < ActiveRecord::Base
   attr_accessor :date_time
-  cattr_accessor :_lookup
-  self._lookup = ExecJS.compile(File.read("app/assets/javascripts/lunar_date.min.js"))
-
-  def self.lookup(y, m, d, h)
-    _lookup.call 'getLunarDate', y, m, d, h
-  end
+  # cattr_accessor :_lookup
+  # self._lookup = ExecJS.compile(File.read("app/assets/javascripts/lunar_date.min.js"))
+  # 
+  # def self.lookup(y, m, d, h)
+  #   _lookup.call 'getLunarDate', y, m, d, h
+  # end
   
   def self.from_date_time(d)
     date = d.to_date
