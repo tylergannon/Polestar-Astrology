@@ -17,11 +17,11 @@
         %td= f.select :yin_yang, [['Yin (Female)', 'yin'], ['Yang (Male)', 'yang']]
   .field
     %h4 Birth Date
-    = f.text_field :year, placeholder: 'Year (4 digits)', class: 'input-small'
+    = f.text_field :year, placeholder: 'Year (4 digits)', class: 'input-small', autocomplete: 'off'
     = f.select :month, Person::MONTHS, class: 'input-small'
-    = f.text_field :day, class: 'input-small', placeholder: 'Day'
+    = f.text_field :day, class: 'input-small', placeholder: 'Day', autocomplete: 'off'
     %span.input-append.bootstrap-timepicker
-      = f.time_field :time, class: 'input-small', placeholder: '12:00 PM'
+      = f.time_field :time, class: 'input-small', placeholder: '12:00 PM', autocomplete: 'off'
       %span.add-on
         %i.icon-time
     
