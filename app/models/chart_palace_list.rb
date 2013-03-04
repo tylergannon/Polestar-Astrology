@@ -4,14 +4,14 @@ class ChartPalaceList < Array
     location = ming_branch
     
     (1..12).each do |i|
-      arr << ChartPalace.new(palace: Palace.send("_#{i}"), location: location)
+      arr << ChartPalace.new(palace: Palace.send("_#{i}"), location: location, chart: chart)
       location = location.previous
     end
     arr = ChartPalaceList.new(arr)
     
-    Star.all.each do |star|
-      arr.by_location(chart.send(star.symbol_name)).stars << star
-    end
+    # Star.all.each do |star|
+    #   arr.by_location(chart.send(star.symbol_name)).stars << star
+    # end
     arr
   end
   
