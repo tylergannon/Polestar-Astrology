@@ -3,19 +3,80 @@
 
 @import "animals.less";
 
-
+/*.something() {
+  2in;
+}
+*/
 @border-width: 1px;
 @cell-padding-left: 5px;
 @cell-width: 150px;
 @cell-height: 150px;
 
-@chart-width: (4 * @cell-width) + (3 * @border-width);
-@chart-height: (4 * @cell-height) + (3 * @border-width);
+@print-border-width: 1pt;
+@print-cell-padding-left: 5pt;
+@print-cell-width: 164pt; /*  2.3 in */
+@print-cell-height: 115pt; /* (1.5in) */
 
-.min-size(@width, @height) {
-  width: @width !important;
-  height: @height !important;
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
 }
+
+.chart-dimensions() {
+  @media screen {
+    width: 4 * (@cell-width + @cell-padding-left + @border-width) !important;
+    height: 4 * (@cell-height + @border-width) !important;
+  }
+  
+  @media print {
+    width: 4 * (@print-cell-width + @print-cell-padding-left + 3 * @print-border-width) !important;
+    height: 4 * (@print-cell-height + @print-border-width + 3 * @print-border-width) !important;
+  }
+}
+
+.palace_location(@x, @y) {
+  position: absolute;
+  @media screen {
+    left: @x * (@cell-width  + @border-width + @cell-padding-left) + @cell-padding-left;
+    top:  @y * (@cell-height + @border-width) + @cell-padding-left;
+  }
+  
+  @media print {
+    left: @x * (@print-cell-width  + @print-cell-padding-left) + @print-cell-padding-left;
+    top:  @y * (@print-cell-height) + @print-cell-padding-left;
+  }
+}
+
+.chart_info_dimensions() {
+  @media screen {
+    width: 2 * (@cell-width + @border-width + @cell-padding-left) !important;
+    height: 2 * (@cell-height + @border-width + @cell-padding-left) !important;
+  }
+  
+  @media print {
+    width: 2 * (@print-cell-width + @print-cell-padding-left) !important;
+    height: 2 * (@print-cell-height + @print-cell-padding-left) !important;
+  }
+}
+
+.palace_dimensions() {
+  @media screen {
+    width: @cell-width !important;
+    height: @cell-height !important;
+    padding-left: @cell-padding-left;
+    border: 1px black solid;
+  }
+  @media print {
+    width: @print-cell-width - 0.75pt !important;
+    height: @print-cell-height - 0.75pt !important;
+    padding-left: @print-cell-padding-left;
+    border: 1pt black solid;
+  }
+}
+
 
 .charts_list {
   position: relative;
@@ -41,10 +102,9 @@
 
 .chart {
   position: relative;
-  .min-size(4 * (@cell-width + @cell-padding-left + @border-width), 4 * (@cell-height + @border-width));
+  .chart-dimensions();
   .palace {
-    .min-size(@cell-width, @cell-height);
-    border: 1px black solid;
+    .palace_dimensions();
   }
 }
 
@@ -99,15 +159,13 @@
 
 
 //  Chart Layout
-.palace_location(@x, @y) {
-  position: absolute;
-  left: @x * (@cell-width  + @border-width + @cell-padding-left) + @cell-padding-left;
-  top:  @y * (@cell-height + @border-width) + @cell-padding-left;
-}
 
 .chart {
   .title_info {
-    .min-size(2 * (@cell-width + @border-width + @cell-padding-left), 2 * (@cell-height + @border-width + @cell-padding-left) );
+    .chart_info_dimensions();
+    table {
+      width: 100% !important;
+    }
     .palace_location(1, 1);
   }
   
@@ -166,7 +224,6 @@
   }
   
   .palace {
-    padding-left: 5px;
     font-family: 'Domine', serif;
 
     .name {
@@ -235,4 +292,17 @@
     }
   }
   
+}
+
+@media print {
+  a[href]:after {
+  content: "";
+  }
+  header, .chart_details {
+    display: none;
+  }
+  body {
+    padding-top: 0.5in;
+/*    padding-left: 1.5in;*/
+  }
 }

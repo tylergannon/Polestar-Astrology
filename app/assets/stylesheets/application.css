@@ -9,10 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap_and_overrides
  *= bootstrap/bootstrap-timepicker.min
  *= require people
  *= require star_relationships
  *= require palaces
  *= require pillars
- *= require bootstrap_and_overrides
+ *= require print
 */

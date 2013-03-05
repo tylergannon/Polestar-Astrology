@@ -8,12 +8,11 @@
     <link href='http://fonts.googleapis.com/css?family=Domine:400,700|Antic+Slab|Mr+Bedfort|Gilda+Display|Stalemate|Rufina|Almendra+Display|Libre+Baskerville:400,400italic|Unica+One|Esteban|Mrs+Saint+Delafield|Lusitana|Junge|Rochester|Buda:300|Maven+Pro|Sanchez' rel='stylesheet' type='text/css'>
 
     = csrf_meta_tag
-    = javascript_include_tag 'application', media: "all", "data-turbolinks-track" => true
-    = stylesheet_link_tag 'application', "data-turbolinks-track" => true
+    = stylesheet_link_tag 'application', "data-turbolinks-track" => true, media: 'all'
     = yield(:head)
   %body
     .container
-      .row
+      %header.row
         .navbar.navbar-top
           .navbar-inner
             .container
@@ -47,7 +46,7 @@
                         = icon_nav_link 'app updates', 'icon-file', blog_path
                         = icon_nav_link 'sign out', 'icon-off', destroy_member_session_path, :method => :delete
                         = icon_nav_link 'change password', 'icon-edit', change_password_path
-                        = yield(:navigation)
+                    = yield(:main_nav)
                 - if member_signed_in?
                   = form_tag people_path, method: :get, class: 'navbar-search' do |f|
                     = text_field_tag :search, '', id: 'people_search', class: 'search-query', autocomplete: 'off', placeholder: 'Look Up Saved Chart', data: {provide: 'typeahead'}
@@ -60,7 +59,8 @@
           - if flash[:error]
             %p.error= flash[:error]
           = yield
-        
+    = javascript_include_tag 'application', media: "all", "data-turbolinks-track" => true
+    
       
                   
     -# #da_yuan_circle_image

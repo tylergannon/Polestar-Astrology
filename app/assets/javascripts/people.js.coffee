@@ -34,7 +34,11 @@ $ ->
   
   $('#person_yin_yang').tooltip
     title: 'Yin / Yang of this person.  Generally corresponds to their gender.'
-
+    
+  $(document).on 'click', 'a.print', (e) ->
+    e.preventDefault()
+    window.print()
+    
   # $('#person_year').focusout () ->
   #   val = $(this).val()
   #   if !isNaN(val) and parseInt(val) >= 1970
