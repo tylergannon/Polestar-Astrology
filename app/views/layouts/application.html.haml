@@ -44,7 +44,7 @@
                       %ul.dropdown-menu{role: 'menu', aria_labelledby: 'dropdownMenu'}
                         = icon_nav_link 'feedback', 'icon-comment', new_feedback_path
                         = icon_nav_link 'app updates', 'icon-file', blog_path
-                        = icon_nav_link 'sign out', 'icon-off', destroy_member_session_path, :method => :delete
+                        = icon_nav_link 'sign out', 'icon-off', '/sign_out'
                         = icon_nav_link 'change password', 'icon-edit', change_password_path
                     = yield(:main_nav)
                 - if member_signed_in?

@@ -13,5 +13,9 @@ class Ability
     can :read, Star
     can :read, StarRelationship, member_id: member.id
     can :read, Stem
+    
+    if member.admin
+      can :manage, :all
+    end
   end
 end

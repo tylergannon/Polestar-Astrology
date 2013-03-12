@@ -61,6 +61,11 @@ PolestarAstrology::Application.routes.draw do
   end
 
   devise_for :members
+  
+  devise_scope :member do
+    get "sign_out", :to => "devise/sessions#destroy"
+  end  
+  
   resources :passwords, :only => [:edit, :update], controller: 'change_passwords'
   get '/change_password' => 'change_passwords#edit', :as => :change_password
   get '/updates' => 'articles#index', :as => :blog
