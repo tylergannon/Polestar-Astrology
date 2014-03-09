@@ -6,5 +6,4 @@
   - for star in palace.minor_stars.sort_by_rank
     .minor_star= "#{star.full_name}"
   
-  %span.palace_location= palace.location.animal
-
+  %span.palace_location= link_to(palace.location.animal, person_path(params[:id], year: palace.location.animal.name))

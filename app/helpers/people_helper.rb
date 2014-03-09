@@ -1,4 +1,8 @@
 module PeopleHelper
+  def palace_animal_display(chart_palace)
+    [chart_palace.location.char, chart_palace.location.pinyin, chart_palace.location.animal].join(' ')
+  end
+  
   def borrowed_stars(palace)
     @chart.palaces[palace.location.diametric].major_stars.sort_by_rank
   end

@@ -35,6 +35,21 @@ class PeopleController < ApplicationController
       @chart = Chart.find_or_create(DateTime.parse(params[:id]))
     end
     
+    if params[:year]
+      puts params[:year].inspect
+      ming_branch = Branch.by_name(params[:year])
+      # @ages = @chart.palaces.by_location(Branch.by_name(params[:year])).great_limit(@chart, @person)
+      
+      #  ok need to reset the order.
+      #  go through the chart_palaces.
+      #  whatever is the current Branch of the palace,
+      #  Its new branch will be the Ming branch added to the 
+
+      @chart.palaces.sort{|t, u| t.location.ordinal <=> u.location.ordinal}.each_with_index do |chart_palace, i|
+        chart_palace.palace = Palace[((chart_palace.palace.id + ming_branch.ordinal - @chart.ming_id - 1) % 12) + 1]
+      end
+    end
+    
     # Load a list of star relationships for this chart
     @relationships = {}
 

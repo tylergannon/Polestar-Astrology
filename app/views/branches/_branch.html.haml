@@ -11,4 +11,4 @@
           = render partial: 'stars/star', collection: major_stars(chart_palace), locals: {star_class: 'major_star', chart_palace: chart_palace}
       .minor_stars
         = render partial: 'stars/star', collection: minor_stars(chart_palace), locals: {star_class: 'minor_star', chart_palace: chart_palace}
-    %span.palace_location #{chart_palace.location.char} #{chart_palace.location.pinyin} #{chart_palace.location.animal} 
+    %span.palace_location= link_to palace_animal_display(chart_palace), person_path(params[:id], year: chart_palace.location.animal)

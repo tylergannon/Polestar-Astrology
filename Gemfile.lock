@@ -48,7 +48,6 @@ GEM
       execjs
     coffee-script-source (1.5.0)
     commonjs (0.2.6)
-    daemons (1.1.9)
     database_cleaner (0.9.1)
     default_value_for (2.0.1)
     devise (3.2.3)
@@ -60,7 +59,6 @@ GEM
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -152,10 +150,6 @@ GEM
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
-    thin (1.6.2)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
     thor (0.18.1)
     thread_safe (0.2.0)
       atomic (>= 1.1.7, < 2)
@@ -203,7 +197,6 @@ DEPENDENCIES
   responders
   sass
   therubyracer (~> 0.12.1)
-  thin
   twitter-bootstrap-rails
   uglifier
   underscore-rails
