@@ -1,6 +1,6 @@
 class Pillar < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :finders
+  friendly_id :name, use: [:finders, :slugged]
   
   belongs_to :stem
   belongs_to :branch

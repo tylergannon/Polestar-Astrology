@@ -2,7 +2,7 @@
 
 class Stem < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :finders
+  friendly_id :name, use: [:finders, :slugged]
 
   validates :yin_yang, :presence => true
   validates :element, :presence => true
