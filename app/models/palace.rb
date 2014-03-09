@@ -1,6 +1,6 @@
 class Palace < ActiveRecord::Base  
-  include Extensions::BsFriendlyId
-  friendly_id :fix_name, cache: true
+  extend FriendlyId
+  friendly_id :fix_name, use: [:finders, :slugged]
   
   has_many :star_relationships do
     def by_member(member)

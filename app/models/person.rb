@@ -1,10 +1,10 @@
 class Person < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :full_name
+  extend FriendlyId
+  friendly_id :full_name, use: [:finders, :slugged]
   belongs_to :member
   belongs_to :chart
   
-  default_scope order(:last_name, :first_name)
+  default_scope ->{order(:last_name, :first_name)}
   
   before_validation do
     puts self.year.inspect

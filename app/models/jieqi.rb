@@ -1,9 +1,9 @@
 # encoding: utf-8
 class Jieqi < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :english
+  extend FriendlyId
+  friendly_id :english, use: :finders
   
-  default_scope order(:ordinal)
+  default_scope ->{order(:ordinal)}
   
   
   

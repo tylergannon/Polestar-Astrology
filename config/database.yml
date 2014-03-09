@@ -1,37 +1,47 @@
-development:
-  adapter: postgresql
-  encoding: utf8
-  reconnect: false
-  pool: 5
-  host: <%= ENV["OPENSHIFT_POSTGRESQL_DB_HOST"] %>
-  database: <%=ENV['OPENSHIFT_APP_NAME']%>
-  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
-  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
-  socket:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_SOCKET']%>
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+
+# development:
+#   adapter: sqlite3
+#   encoding: unicode
+#   database: db/development.sqlite3
 
 production:
   adapter: postgresql
-  encoding: utf8
-  reconnect: false
+  encoding: unicode
+  database: polestar_astrology_production
+  host: localhost
   pool: 5
-  host: <%= ENV["OPENSHIFT_POSTGRESQL_DB_HOST"] %>
-  database: <%=ENV['OPENSHIFT_APP_NAME']%>
-  username: <%=ENV['OPENSHIFT_POSTGRESQL_DB_USERNAME']%>
-  password: <%=ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD']%>
-  socket:   <%=ENV['OPENSHIFT_POSTGRESQL_DB_SOCKET']%>
+  username: polestar_astrology
+  password: idly_and_sambar
 
-# production:
-#   adapter: postgresql
+# test:
+#   adapter: sqlite3
 #   encoding: unicode
-#   database: natal_charts_production
-#   pool: 5
-#   username: polestar
-#   password: sourdough
-#   host: localhost
-#   port: 5432
+#   database: db/test.sqlite3
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: polestar_astrology_development
+  # host: localhost
+  pool: 50
+  # username: dbuser
+  # password: sourdough
+  # adapter: postgresql
+  # encoding: unicode
+  # database: polestar_astrology_production
+  # host: localhost
+  # pool: 100
+  # username: polestar_astrology
+  # password: "[6!NGk]Gka3zb5,,s4"
+
 
 test:
-  adapter: sqlite3
-  database: ':memory:'
+  adapter: postgresql
+  encoding: unicode
+  database: polestar_astrology_test
   pool: 5
-  timeout: 5000

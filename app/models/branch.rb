@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Branch < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :animal, cache: true
+  extend FriendlyId
+  friendly_id :animal, use: [:finders, :slugged]
+
   belongs_to :native_stem, :class_name => 'Stem'
   has_many :pillars
   default_scope -> {order(:id)}

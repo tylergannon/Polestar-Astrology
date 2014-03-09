@@ -1,6 +1,6 @@
 class Element < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :name
+  extend FriendlyId
+  friendly_id :name, use: :finders
   
   def self.by_name(el)
     send el

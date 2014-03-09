@@ -1,6 +1,6 @@
 class Pillar < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :name, cache: true
+  extend FriendlyId
+  friendly_id :name, use: :finders
   
   belongs_to :stem
   belongs_to :branch

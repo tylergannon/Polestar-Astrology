@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :title
+  extend FriendlyId
+  friendly_id :title, use: :finders
   
-  default_scope order('date_posted desc')
+  default_scope -> {order('date_posted desc')}
 end

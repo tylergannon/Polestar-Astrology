@@ -1,9 +1,13 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require "active_record/railtie"
+require "action_view/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "sprockets/railtie"
 
 # Assets should be precompiled for production (so we don't need the gems loaded then)
-Bundler.require(*Rails.groups(assets: %w(development test)))
+Bundler.require(*Rails.groups)
 
 module PolestarAstrology
   class Application < Rails::Application    
@@ -20,7 +24,6 @@ module PolestarAstrology
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     
-    require 'sprockets/railtie'
     
     
     config.assets.enabled = true
@@ -38,9 +41,9 @@ module PolestarAstrology
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    console do
-      require "pry"
-      config.console = Pry
-    end
+    # console do
+    #   require "pry"
+    #   config.console = Pry
+    # end
   end
 end

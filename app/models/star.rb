@@ -1,6 +1,6 @@
 class Star < ActiveRecord::Base
-  include Extensions::BsFriendlyId
-  friendly_id :pinyin, cache: true
+  extend FriendlyId
+  friendly_id :pinyin, use: :finders
   
   has_many :star_palaces
   has_many :comments, as: :commentable
