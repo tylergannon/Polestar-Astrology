@@ -17,7 +17,7 @@ class PeopleController < ApplicationController
     respond_with(@people) do |format|
       format.json {
         render json: @people.map{|p|
-          {label: p.full_name, value: person_path(p)}
+          {name: p.full_name, value: person_path(p)}
         }
       }
     end

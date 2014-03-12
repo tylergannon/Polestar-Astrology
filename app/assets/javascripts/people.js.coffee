@@ -57,24 +57,29 @@ $ ->
     e.preventDefault()
     $(this).parent().parent().find('.collapse').collapse('hide')
   
-  
+  bloodhound = new Bloodhound
+    name: 'foobax'
+    remote: 
+      url: '/charts.json?term=%QUERY'
+    datumTokenizer: (d) ->
+      name: Bloodhound.tokenizers.whitespace d.name
+      value: d.value
+      
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    
+  bloodhound.initialize()
+
   $('#people_search').typeahead
-    source: (typeahead, query) ->
-      console.log('bhahbssd');
+    autoselect: true
+    highlight: true
+  ,
+    name: 'search_data'
+    source: bloodhound.ttAdapter()
+    displayKey: 'name'
 
-      $.ajax
-        url: '/charts.json'
-        success: (data) ->
-          typeahead.process _.map data, (item) ->
-            id: item.value
-            value: item.label
-        dataType: 'json'
-        type: 'GET'
-        data:
-          term: query
-
-    onselect: (obj) ->
-      window.location.href = obj.id;
+  $(document).on 'typeahead:selected', '#people_search', (e, object, data) ->
+    window.location.href = object.value
+    # console.log object
   
   _.each regions, (item) ->
     $('#region_select').append '<option value="' + item + '">' + item + '</option>'

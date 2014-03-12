@@ -34,8 +34,8 @@
 //= require twitter/bootstrap/bootstrap-popover.js	
 
 //  Using a different version of typeahead.
-
-//= require bootstrap/bootstrap-typeahead.js
+//= require twitter/typeahead
+// require bootstrap/bootstrap-typeahead.js
 // require twitter/bootstrap/bootstrap-typeahead.js
 
 //  Mustache JS features.
